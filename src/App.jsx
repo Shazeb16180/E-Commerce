@@ -15,7 +15,7 @@ function App() {
         <NavLink>
           <h1 className="nav-title">SPARE PARTS</h1>
         </NavLink>
-        <ul>
+        <ul className="nav-links">
           <li>
             <NavLink className="material-symbols-outlined">Search</NavLink>
           </li>
@@ -35,7 +35,7 @@ function App() {
           </li>
         </ul>
       </nav>
-      <div className="image-container">
+      <section className="image-container">
         <div className="image"></div>
         <div className="image-content">
           <h1>
@@ -44,11 +44,11 @@ function App() {
           </h1>
           <NavLink className="button-shop">Shop</NavLink>
         </div>
-      </div>
-      <div className="category">
+      </section>
+      <section className="category-heading">
         <h1>POPULAR CATEGORY</h1>
-      </div>
-      <div className="category-menu">
+      </section>
+      <section className="category-menu">
         <div className="category-card">
           <img
             src="https://redparts.webps.info/assets/components/phpthumbof/cache/category-5-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
@@ -91,7 +91,7 @@ function App() {
           />
           <h3>HeadLight & Lighting</h3>
         </div>
-      </div>
+      </section>
       <footer className="footer">
         <div className="footer-links">
           <a href="./" target="_blank">
