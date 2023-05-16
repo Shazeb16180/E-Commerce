@@ -1,0 +1,83 @@
+.home-image-container {
+  position: relative;
+  margin: 20px 0px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.home-image-container:hover {
+  transition: transform 0.5s cubic-bezier(0.28, 0.12, 0.22, 1),
+    -webkit-transform 0.5s cubic-bezier(0.28, 0.12, 0.22, 1);
+}
+.home-image {
+  background-image: url("https://k4j3j2s7.rocketcdn.me/partdo/wp-content/uploads/2022/12/banner-31.jpg");
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  height: 315px;
+}
+.home-image-content {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: white;
+  width: 250px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .home-image-content {
+    width: 470px;
+  }
+}
+.home-button-shop {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ef233c;
+  color: white;
+}
+.home-category-heading {
+  text-align: center;
+  padding: 8px;
+  background-color: #333;
+  color: white;
+  border-radius: 15px;
+}
+.home-category-menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 5px;
+  justify-items: center;
+}
+.home-image-card {
+  width: 150px;
+  height: 150px;
+}
+@media screen and (min-width: 768px) {
+  .home-image-card {
+    width: 200px;
+    height: 200px;
+  }
+}
+.home-image-card img {
+  width: 100%;
+  height: 100%;
+}
+@media screen and (min-width: 768px) {
+  .home-category-menu {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.home-category-card {
+  padding: 5px;
+  display: flex;
+  width: 400px;
+  gap: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.home-category-card:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}

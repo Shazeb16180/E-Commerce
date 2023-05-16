@@ -1,0 +1,134 @@
+.products-menu {
+  border: 1px solid black;
+  display: flex;
+  gap: 10px;
+}
+.product-filters {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.product-filters input {
+  border: 1px solid #333;
+}
+.product-filters button {
+  padding: 8px;
+
+  border: none;
+  border-radius: 5px;
+  background-color: #ef233c;
+  color: white;
+}
+.filter-header {
+  display: flex;
+}
+.filter-header div {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin: auto;
+}
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.range-label p {
+  margin: auto;
+  width: fit-content;
+}
+input[type="range"] {
+  width: 100%;
+}
+.filter-category h3,
+.filter-rating h3,
+.filter-sort h3 {
+  margin-bottom: 10px;
+}
+.filter-product-category,
+.filter-product-rating,
+.filter-product-sort {
+  margin: 8px;
+}
+.product-list {
+  border: 1px solid greenyellow;
+  padding: 10px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+@media screen and (min-width: 768px) {
+  .product-list {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+.product-list-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  position: relative;
+}
+.product-list-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.favourite {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.product-list-card-image {
+  width: 200px;
+  height: 200px;
+}
+.product-list-card-img {
+  width: 100%;
+  height: 100%;
+}
+.product-list-card h3 {
+  border: 1px solid black;
+  width: 100%;
+  margin-bottom: 3px;
+  padding: 2px;
+  text-align: center;
+}
+.product-list-card-rating {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  width: 100%;
+}
+.product-list-card-rating svg {
+  margin: 2px;
+}
+.product-list-card-price {
+  display: flex;
+  width: 100%;
+}
+.product-list-card-price h3 {
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  margin-left: 5px;
+}
+.product-list-card-cart {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+.product-list-card-cart button {
+  padding: 10px;
+  height: fit-content;
+  border-radius: 50%;
+  background-color: white;
+  margin: 2px;
+}
