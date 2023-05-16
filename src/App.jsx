@@ -3,12 +3,12 @@ import "./App.css";
 import { Header } from "./component/Header/Header";
 import { Footer } from "./component/Footer/Footer";
 import { Home } from "./pages/Home/Home";
-import { ProductList } from "./pages/ProductList";
-import { Product } from "./pages/Product";
-import { Favourite } from "./pages/Favourite";
-import { Cart } from "./pages/Cart";
-import { Login } from "./pages/Login";
-import { SignUp } from "./pages/SignUp";
+import { ProductList } from "./pages/ProductList/ProductList";
+import { Product } from "./pages/Product/Product";
+import { Favourite } from "./pages/Favourite/Favourite";
+import { Cart } from "./pages/Cart/Cart";
+import { Login } from "./pages/Login/Login";
+import { SignUp } from "./pages/SignUp/SignUp";
 
 function App() {
   return (

@@ -1,3 +1,4 @@
+import "./Favourite.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,

@@ -1,21 +1,21 @@
-.image-container {
+.home-image-container {
   position: relative;
   margin: 20px 0px;
   border-radius: 10px;
   overflow: hidden;
 }
-.image-container:hover {
+.home-image-container:hover {
   transition: transform 0.5s cubic-bezier(0.28, 0.12, 0.22, 1),
     -webkit-transform 0.5s cubic-bezier(0.28, 0.12, 0.22, 1);
 }
-.image {
+.home-image {
   background-image: url("https://k4j3j2s7.rocketcdn.me/partdo/wp-content/uploads/2022/12/banner-31.jpg");
   background-size: cover;
   background-position: 50%;
   background-repeat: no-repeat;
   height: 315px;
 }
-.image-content {
+.home-image-content {
   position: absolute;
   top: 20px;
   left: 20px;
@@ -24,18 +24,18 @@
   text-align: center;
 }
 @media screen and (min-width: 768px) {
-  .image-content {
+  .home-image-content {
     width: 470px;
   }
 }
-.button-shop {
+.home-button-shop {
   padding: 8px;
   border: none;
   border-radius: 5px;
   background-color: #ef233c;
   color: white;
 }
-.category-heading {
+.home-category-heading {
   text-align: center;
   padding: 8px;
   background-color: #333;
@@ -49,11 +49,11 @@
   padding: 5px;
   justify-items: center;
 }
-.home-image {
+.home-image-card {
   width: 200px;
   height: 200px;
 }
-.home-image img {
+.home-image-card img {
   width: 100%;
   height: 100%;
 }

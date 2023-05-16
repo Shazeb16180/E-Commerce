@@ -5,17 +5,17 @@ import "./Home.css";
 export function Home() {
   return (
     <>
-      <section className="image-container">
-        <div className="image"></div>
-        <div className="image-content">
+      <section className="home-image-container">
+        <div className="home-image"></div>
+        <div className="home-image-content">
           <h1>
             Get the Right Part at the Right Price for the Comfort of Your
             Vehicle.
           </h1>
-          <NavLink className="button-shop">Shop</NavLink>
+          <NavLink className="home-button-shop">Shop</NavLink>
         </div>
       </section>
-      <section className="category-heading">
+      <section className="home-category-heading">
         <h1>POPULAR CATEGORY</h1>
       </section>
       <section className="home-category-menu">
