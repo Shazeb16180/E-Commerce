@@ -15,7 +15,7 @@ import { ProductListCard } from "./components/ProductListCard";
 
 export function ProductList() {
   return (
-    <div className="products">
+    <div className="products-menu">
       <Filters />
       <div className="product-list">
         <ProductListCard

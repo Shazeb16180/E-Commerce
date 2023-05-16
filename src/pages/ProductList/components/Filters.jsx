@@ -18,49 +18,49 @@ export function Filters() {
       </div>
       <div className="filter-category">
         <h3>Categories</h3>
-        <div className="product-category">
+        <div className="filter-product-category">
           <input type="checkbox" />
           Tyres & Wheels
         </div>
-        <div className="product-category">
+        <div className="filter-product-category">
           <input type="checkbox" />
           Engine & DriveTrain
         </div>
-        <div className="product-category">
+        <div className="filter-product-category">
           <input type="checkbox" />
           Interior Accessories
         </div>
-        <div className="product-category">
+        <div className="filter-product-category">
           <input type="checkbox" />
           Body Parts & Mirrors
         </div>
-        <div className="product-category">
+        <div className="filter-product-category">
           <input type="checkbox" />
           Fuel System & Filters
         </div>
       </div>
       <div className="filter-rating">
         <h3>Rating</h3>
-        <div className="product-rating">
+        <div className="filter-product-rating">
           <input type="radio" name="rating" />4 stars & above
         </div>
-        <div className="product-rating">
+        <div className="filter-product-rating">
           <input type="radio" name="rating" />3 stars & above
         </div>
-        <div className="product-rating">
+        <div className="filter-product-rating">
           <input type="radio" name="rating" />2 stars & above
         </div>
-        <div className="product-rating">
+        <div className="filter-product-rating">
           <input type="radio" name="rating" />1 stars & above
         </div>
       </div>
       <div className="filter-sort">
         <h3>Sort By Price</h3>
-        <div className="product-sort">
+        <div className="filter-product-sort">
           <input type="radio" name="sort" />
           price-Low-to-High
         </div>
-        <div className="product-sort">
+        <div className="filter-product-sort">
           <input type="radio" name="sort" />
           price-High-to-Low
         </div>

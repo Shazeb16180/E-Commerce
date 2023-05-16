@@ -50,8 +50,14 @@
   justify-items: center;
 }
 .home-image-card {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+}
+@media screen and (min-width: 768px) {
+  .home-image-card {
+    width: 200px;
+    height: 200px;
+  }
 }
 .home-image-card img {
   width: 100%;

@@ -1,3 +1,4 @@
+import "./Product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -10,7 +11,7 @@ export function Product() {
   return (
     <div className="product-container">
       <div className="product-card">
-        <div className="item-image">
+        <div className="product-item-image">
           <img
             src="https://redparts.webps.info/assets/components/phpthumbof/cache/product-4-500x500.8cb26c7720389e626ca4c73f736ce6da43.jpg"
             alt="Loading...."
@@ -23,7 +24,7 @@ export function Product() {
             <FontAwesomeIcon icon={faStar} />
             <h3>$800</h3>
           </div>
-          <div className="product-details-container">
+          <div className="product-details-body">
             <div className="product-details-perks">
               <div>
                 <FontAwesomeIcon icon={faTag} /> Fastest Delivery

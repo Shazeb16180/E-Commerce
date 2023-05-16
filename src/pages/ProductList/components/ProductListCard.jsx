@@ -12,11 +12,11 @@ import { NavLink } from "react-router-dom";
 export function ProductListCard({ name, image }) {
   return (
     <div className="product-list-card">
-      <div className="product-image">
+      <div className="product-list-card-image">
         <img src={image} alt="loading" />
       </div>
       <h3>{name}</h3>
-      <div className="rating">
+      <div className="product-list-card-rating">
         <div>
           <FontAwesomeIcon icon={farStar} />
           <div style={{ textAlign: "center" }}>1</div>
@@ -30,9 +30,9 @@ export function ProductListCard({ name, image }) {
           <div style={{ textAlign: "center" }}>3</div>
         </div>
       </div>
-      <div className="price">
+      <div className="product-list-card-price">
         <h3>$220</h3>
-        <div className="cart">
+        <div className="product-list-card-cart">
           <button>
             <FontAwesomeIcon icon={faCartShopping} />
           </button>

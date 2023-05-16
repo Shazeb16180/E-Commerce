@@ -1,4 +1,4 @@
-.products {
+.products-menu {
   border: 1px solid black;
   display: flex;
   gap: 10px;
@@ -15,6 +15,7 @@
 }
 .product-filters button {
   padding: 8px;
+
   border: none;
   border-radius: 5px;
   background-color: #ef233c;
@@ -46,9 +47,9 @@ input[type="range"] {
 .filter-sort h3 {
   margin-bottom: 10px;
 }
-.product-category,
-.product-rating,
-.product-sort {
+.filter-product-category,
+.filter-product-rating,
+.filter-product-sort {
   margin: 8px;
 }
 .product-list {
@@ -85,11 +86,11 @@ input[type="range"] {
   top: 5px;
   right: 5px;
 }
-.product-image {
+.product-list-card-image {
   width: 200px;
   height: 200px;
 }
-.product-image img {
+.product-list-card-img {
   width: 100%;
   height: 100%;
 }
@@ -100,96 +101,34 @@ input[type="range"] {
   padding: 2px;
   text-align: center;
 }
-.rating {
+.product-list-card-rating {
   display: flex;
   justify-content: center;
   padding: 5px;
   width: 100%;
 }
-.rating svg {
+.product-list-card-rating svg {
   margin: 2px;
 }
-.price {
+.product-list-card-price {
   display: flex;
   width: 100%;
 }
-.price h3 {
+.product-list-card-price h3 {
   width: fit-content;
   height: fit-content;
   margin: auto;
   margin-left: 5px;
 }
-.cart {
+.product-list-card-cart {
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
 }
-.cart button {
+.product-list-card-cart button {
   padding: 10px;
   height: fit-content;
   border-radius: 50%;
   background-color: white;
   margin: 2px;
-}
-
-.product-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.item-image {
-  width: 500px;
-  height: 500px;
-}
-.item-image img,
-.favourite-item-image img {
-  width: 100%;
-  height: 100%;
-}
-.product-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  background-color: #333;
-  color: white;
-}
-.product-details-header {
-  border-bottom: 1px solid black;
-}
-.product-details-header h3 {
-  width: 300px;
-  margin: 0;
-}
-.product-details-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.description {
-  border: 1px solid white;
-  display: flex;
-  gap: 10px;
-}
-.description-header {
-  width: 20px;
-}
-.description-value {
-  flex-grow: 1;
-  display: flex;
-  justify-content: center;
-}
-.description-header,
-.description-value {
-  padding: 10px;
-}
-.product-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.product-buttons button {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
 }
