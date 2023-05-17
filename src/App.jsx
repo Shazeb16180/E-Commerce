@@ -1,5 +1,6 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
+import Mockman from "mockman-js";
 import { Header } from "./component/Header/Header";
 import { Footer } from "./component/Footer/Footer";
 import { Home } from "./pages/Home/Home";
@@ -22,6 +23,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />
     </div>
