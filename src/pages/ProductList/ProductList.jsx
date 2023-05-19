@@ -12,37 +12,72 @@ import {
 import { NavLink } from "react-router-dom";
 import { Filters } from "./components/Filters";
 import { ProductListCard } from "./components/ProductListCard";
+import { useContext } from "react";
+import { ProductContext } from "../../context/ProductContext";
+import { DataContext } from "../../context/DataContext";
+import { HomeContext } from "../../context/HomeContext";
 
 export function ProductList() {
+  const { products, loading } = useContext(ProductContext);
+  const { categories } = useContext(HomeContext);
+  const { state } = useContext(DataContext);
+  let temproryProduct = products.filter(({ name }) =>
+    name.toLowerCase().includes(state.search)
+  );
+  temproryProduct = temproryProduct.filter(
+    ({ price }) => Number(price) < Number(state.priceRange)
+  );
+  temproryProduct = temproryProduct.filter(
+    ({ rating }) =>
+      Number(rating) >= Number(state.rating === "false" ? 1 : state.rating)
+  );
+  switch (state.sort) {
+    case "L-H":
+      temproryProduct = [...temproryProduct].sort((a, b) => a.price - b.price);
+      break;
+    case "H-L":
+      temproryProduct = [...temproryProduct].sort((a, b) => b.price - a.price);
+      break;
+    case "None":
+      temproryProduct = [...temproryProduct];
+      break;
+    default:
+      temproryProduct = [...temproryProduct];
+  }
+  const filterCategory = categories
+    .filter(({ categoryName }) => state.category[categoryName])
+    .map(({ categoryName }) => categoryName);
+  console.log(filterCategory);
+  temproryProduct =
+    filterCategory.length > 0
+      ? temproryProduct.filter(({ categoryName }) =>
+          filterCategory.find((fc) => fc === categoryName) === undefined
+            ? false
+            : true
+        )
+      : temproryProduct;
   return (
     <div className="products-menu">
       <Filters />
-      <div className="product-list">
-        <ProductListCard
-          name={"HeadLight & Lighting"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-1-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <ProductListCard
-          name={"HeadLight & Lighting"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-1-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <ProductListCard
-          name={"HeadLight & Lighting"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-1-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <ProductListCard
-          name={"HeadLight & Lighting"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-1-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-      </div>
+      {loading ? (
+        <div className="loader-product-list">
+          <img src="/images/Gears.gif" />
+        </div>
+      ) : (
+        <div className="product-list">
+          {temproryProduct.map((product) => {
+            return (
+              <ProductListCard
+                id={product.id}
+                name={product.name}
+                image={product.src}
+                rating={product.rating}
+                price={product.price}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

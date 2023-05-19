@@ -6,23 +6,39 @@ import {
   faStar,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
+import { useParams } from "react-router";
+import { useContext, useEffect, useState } from "react";
+import { ProductContext } from "../../context/ProductContext";
 
 export function Product() {
+  const { productId } = useParams();
+  const { products } = useContext(ProductContext);
+  console.log(products);
+  const { name, src, price } = products.find(({ id }) => id === productId);
+  //console.log(product);
+  /*console.log(productId)
+  const [product, setProduct] = useState({});
+  const [loading, setLoading] = useState(true);
+  const getData = async () => {
+    const response = await fetch(`/api/products/${productId}`);
+    const { product: dbProduct } = await response.json();
+    console.log(dbProduct);
+  };
+  useEffect(() => {
+    getData();
+  }, []);*/
   return (
     <div className="product-container">
       <div className="product-card">
         <div className="product-item-image">
-          <img
-            src="https://redparts.webps.info/assets/components/phpthumbof/cache/product-4-500x500.8cb26c7720389e626ca4c73f736ce6da43.jpg"
-            alt="Loading...."
-          />
+          <img src={src} alt="Loading...." />
         </div>
         <div className="product-details">
           <div className="product-details-header">
-            <h3>Glossy Gray 19" Aluminium Wheel AR-19</h3>
+            <h3>{name}</h3>
             <span>4.5</span>
             <FontAwesomeIcon icon={faStar} />
-            <h3>$800</h3>
+            <h3>{price}</h3>
           </div>
           <div className="product-details-body">
             <div className="product-details-perks">

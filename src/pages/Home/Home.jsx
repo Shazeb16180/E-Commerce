@@ -1,8 +1,12 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HomeCategoryCard } from "./components/HomeCategoryCard";
 import "./Home.css";
+import { useContext, useEffect, useState } from "react";
+import { HomeContext } from "../../context/HomeContext";
+import { DataContext } from "../../context/DataContext";
 
 export function Home() {
+  const { categories, loading } = useContext(HomeContext);
   return (
     <>
       <section className="home-image-container">
@@ -18,44 +22,23 @@ export function Home() {
       <section className="home-category-heading">
         <h1>POPULAR CATEGORY</h1>
       </section>
-      <section className="home-category-menu">
-        <HomeCategoryCard
-          name={"Tyres & Wheels"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-5-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <HomeCategoryCard
-          name={"Engine & DriveTrain"}
-          image={
-            "https://red-parts.html.themeforest.scompiler.ru/themes/blue-ltr/images/products/product-2-700x700.jpg"
-          }
-        />
-        <HomeCategoryCard
-          name={"Interior Accessories"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-4-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <HomeCategoryCard
-          name={"Body Parts & Mirrors"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-3-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-        <HomeCategoryCard
-          name={"Fuel System & Filters"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-2-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />{" "}
-        <HomeCategoryCard
-          name={"HeadLight & Lighting"}
-          image={
-            "https://redparts.webps.info/assets/components/phpthumbof/cache/category-1-200x200.94428279bfba15e90f890abe2b5cc6022.jpg"
-          }
-        />
-      </section>
+      {loading ? (
+        <div className="loader">
+          <img src="/images/Gears.gif" />
+        </div>
+      ) : (
+        <section className="home-category-menu">
+          {categories.map((category) => {
+            return (
+              <HomeCategoryCard
+                id={category.id}
+                name={category.categoryName}
+                image={category.src}
+              />
+            );
+          })}
+        </section>
+      )}
     </>
   );
 }

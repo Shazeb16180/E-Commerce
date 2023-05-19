@@ -13,11 +13,38 @@
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+  align-items: center;
 }
 .nav-links li {
   padding: 2px;
   margin: 5px;
   font-size: larger;
+}
+.search-container {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+}
+.search-container svg {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.nav-links input {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  border-radius: 15px;
+}
+.nav-links input:focus {
+  outline: none;
+}
+::placeholder {
+  font-size: larger;
+  color: #333;
 }
 /**********Some mixed css**********/
 .nav-bar a,
