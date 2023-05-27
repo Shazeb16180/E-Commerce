@@ -6,7 +6,7 @@ import { HomeContext } from "../../context/HomeContext";
 import { DataContext } from "../../context/DataContext";
 
 export function Home() {
-  const { categories, loading } = useContext(HomeContext);
+  const { state } = useContext(DataContext);
   return (
     <>
       <section className="home-image-container">
@@ -22,13 +22,13 @@ export function Home() {
       <section className="home-category-heading">
         <h1>POPULAR CATEGORY</h1>
       </section>
-      {loading ? (
+      {false ? (
         <div className="loader">
           <img src="/images/Gears.gif" />
         </div>
       ) : (
         <section className="home-category-menu">
-          {categories.map((category) => {
+          {state.categories.map((category) => {
             return (
               <HomeCategoryCard
                 id={category.id}

@@ -1,28 +1,82 @@
-function CartProductCard() {
+import {
+  faCartShopping,
+  faHeart,
+  faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useState } from "react";
+import {
+  addToCart,
+  removeFromCart,
+  updateToCart,
+} from "../../../services/cartService";
+import { DataContext } from "../../../context/DataContext";
+import { AuthContext } from "../../../context/AuthContext";
+import { isProductInWishlist } from "../../../utils/utils";
+import { addToWishList } from "../../../services/wishListService";
+import { useNavigate } from "react-router";
+
+export function CartProductCard({ product }) {
+  const { state, dispatch } = useContext(DataContext);
+  const { token } = useContext(AuthContext);
+  const { _id, id, src, name, price, rating, qty } = product;
+  const navigate = useNavigate();
+  const wishListHandler = () =>
+    isProductInWishlist(state.wishlist, id)
+      ? navigate("/favourite")
+      : addToWishList(dispatch, product, token);
+  const cartHandler = () => {
+    token ? removeFromCart(_id, dispatch, token) : navigate("/login");
+  };
   return (
     <div className="cart-product-card">
       <div className="cart-item-image">
-        <img
-          src="https://redparts.webps.info/assets/components/phpthumbof/cache/product-4-500x500.8cb26c7720389e626ca4c73f736ce6da43.jpg"
-          alt="Loading...."
-        />
+        <img src={src} alt="Loading...." />
       </div>
       <div className="cart-product-details">
         <div className="cart-product-details-header">
-          <h3>Glossy Gray 19" Aluminium Wheel AR-19</h3>
-          <span>4.5</span>
+          <h3>{name}</h3>
+          <span>{rating}</span>
           <FontAwesomeIcon icon={faStar} />
-          <h3>$800</h3>
+          <h3>${price}</h3>
+        </div>
+        <div>
+          Quantity{" "}
+          <button
+            className="cart-qty-btn"
+            onClick={() => {
+              updateToCart(dispatch, _id, { type: "increment" }, token);
+            }}
+          >
+            +
+          </button>
+          <span className="quantity">{qty}</span>
+          <button
+            className="cart-qty-btn"
+            onClick={() => {
+              if (qty > 1)
+                updateToCart(dispatch, _id, { type: "decrement" }, token);
+              else removeFromCart(_id, dispatch, token);
+            }}
+          >
+            -
+          </button>
         </div>
         <div className="cart-product-buttons">
           <div className="product-buttons">
-            <button>
+            <button
+              onClick={() => {
+                cartHandler();
+              }}
+            >
               <FontAwesomeIcon icon={faCartShopping} />
-              Add to Cart
+              Remove From Cart
             </button>
-            <button>
+            <button onClick={() => wishListHandler()}>
               <FontAwesomeIcon icon={faHeart} />
-              Remove from Favourite
+              {isProductInWishlist(state.wishlist, id)
+                ? "Go To WishList"
+                : "Add to Favourite"}
             </button>
           </div>
         </div>

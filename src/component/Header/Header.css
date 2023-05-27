@@ -46,12 +46,27 @@
   font-size: larger;
   color: #333;
 }
+.number-logo {
+  position: relative;
+}
+.number-logo div {
+  position: absolute;
+  right: 1px;
+  top: -6px;
+  font-size: 0.6rem;
+  color: white;
+  background-color: #ef233c;
+  padding: 0.2rem;
+  border-radius: 1000px;
+  border: #333;
+}
 /**********Some mixed css**********/
 .nav-bar a,
 .home-image-container a {
   text-decoration: none;
   color: white;
   margin: auto;
+  padding: 2px;
 }
 .nav-bar a:hover,
 .footer a:hover {

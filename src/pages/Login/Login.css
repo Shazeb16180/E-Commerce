@@ -23,11 +23,17 @@
   gap: 20px;
 }
 .login-details div {
+  position: relative;
   display: flex;
   flex-direction: column;
 }
 .login-details input {
   padding: 10px;
+}
+.login-details svg {
+  position: absolute;
+  right: 2px;
+  top: 30px;
 }
 .login-buttons {
   display: flex;

@@ -6,15 +6,31 @@ import {
   faStar,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../context/ProductContext";
-
+import { DataContext } from "../../context/DataContext";
+import { AuthContext } from "../../context/AuthContext";
+import { isProductInWishlist } from "../../utils/utils";
+import { addItemToWishlistHandler } from "../../backend/controllers/WishlistController";
+import { addToWishList } from "../../services/wishListService";
+import { toast } from "react-toastify";
 export function Product() {
   const { productId } = useParams();
-  const { products } = useContext(ProductContext);
-  console.log(products);
-  const { name, src, price } = products.find(({ id }) => id === productId);
+  const { token } = useContext(AuthContext);
+  const { state, dispatch } = useContext(DataContext);
+  const navigate = useNavigate();
+  console.log(state.products);
+  const product = state.products.find(({ id }) => id === productId);
+  const { id, name, price, src, rating } = product;
+  const isInWishlist = isProductInWishlist(state.wishlist, productId);
+  const wishListHandler = () => {
+    token
+      ? isInWishlist
+        ? navigate("/favourite")
+        : addToWishList(dispatch, product, token, toast)
+      : navigate("/login");
+  };
   //console.log(product);
   /*console.log(productId)
   const [product, setProduct] = useState({});
@@ -36,7 +52,7 @@ export function Product() {
         <div className="product-details">
           <div className="product-details-header">
             <h3>{name}</h3>
-            <span>4.5</span>
+            <span>{rating}</span>
             <FontAwesomeIcon icon={faStar} />
             <h3>{price}</h3>
           </div>
@@ -75,9 +91,9 @@ export function Product() {
                 <FontAwesomeIcon icon={faCartShopping} />
                 Add to Cart
               </button>
-              <button>
+              <button onClick={() => wishListHandler()}>
                 <FontAwesomeIcon icon={faHeart} />
-                Add to Favourite
+                {isInWishlist ? "Go To Favourite" : "Add to Favourite"}
               </button>
             </div>
           </div>

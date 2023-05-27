@@ -2,7 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Search } from "@mui/icons-material";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faSearch,
+  faShoppingCart,
+} from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 export function Header() {
@@ -31,14 +35,16 @@ export function Header() {
             local_mall
           </NavLink>
         </li>
-        <li>
-          <NavLink to={"/favourite"} className="material-symbols-outlined">
-            Favorite
+        <li className="number-logo">
+          {state.wishlist.length > 0 && <div>{state.wishlist.length}</div>}
+          <NavLink to={"/favourite"}>
+            <FontAwesomeIcon icon={faHeart} />
           </NavLink>
         </li>
-        <li>
-          <NavLink to={"/cart"} className="material-symbols-outlined">
-            shopping_cart
+        <li className="number-logo">
+          {state.cart.length > 0 && <div>{state.cart.length}</div>}
+          <NavLink to={"/cart"}>
+            <FontAwesomeIcon icon={faShoppingCart} />
           </NavLink>
         </li>
         <li>

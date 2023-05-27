@@ -12,14 +12,25 @@ export const initialState = {
     "Body Parts": false,
   },
   rating: "false",
+  categories: [],
   products: [],
   cart: [],
   wishlist: [],
   address: [],
   search: "",
+  form: {
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  },
 };
 export function dataReducer(state, action) {
   switch (action.type) {
+    case "PRODUCTS":
+      return { ...state, products: action.payload };
+    case "CATEGORIES":
+      return { ...state, categories: action.payload };
     case "SEARCH":
       return { ...state, search: action.payload };
     case "SORT":
@@ -30,7 +41,31 @@ export function dataReducer(state, action) {
       return { ...state, rating: action.payload };
     case "CATEGORY":
       return { ...state, category: { ...state.category, ...action.payload } };
+    case "FORM":
+      return { ...state, form: { ...state.form, ...action.payload } };
+    case "ADD_CART":
+      return { ...state, cart: [...action.payload] };
+    case "REMOVE_CART":
+      return { ...state, cart: [...action.payload] };
+    case "CLEAR_CART":
+      return { ...state, cart: [] };
+    case "ADD_WISHLIST":
+      return { ...state, wishlist: [...action.payload] };
+    case "REMOVE_WHISLIST":
+      return { ...state, wishlist: [...action.payload] };
+    case "CLEAR_WISHLIST":
+      return { ...state, cart: [] };
+    case "INTIALIZE_ADDR":
+      return { ...state, address: action.payload };
     default:
-      return initialState;
+      return {
+        ...initialState,
+        categories: state.categories,
+        products: state.products,
+        cart: state.cart,
+        wishlist: state.wishlist,
+        form: state.form,
+        address: state.address,
+      };
   }
 }

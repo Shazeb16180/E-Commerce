@@ -18,10 +18,8 @@ import { DataContext } from "../../context/DataContext";
 import { HomeContext } from "../../context/HomeContext";
 
 export function ProductList() {
-  const { products, loading } = useContext(ProductContext);
-  const { categories } = useContext(HomeContext);
-  const { state } = useContext(DataContext);
-  let temproryProduct = products.filter(({ name }) =>
+  const { state, wishState, wishDispatch } = useContext(DataContext);
+  let temproryProduct = state.products.filter(({ name }) =>
     name.toLowerCase().includes(state.search)
   );
   temproryProduct = temproryProduct.filter(
@@ -44,10 +42,9 @@ export function ProductList() {
     default:
       temproryProduct = [...temproryProduct];
   }
-  const filterCategory = categories
+  const filterCategory = state.categories
     .filter(({ categoryName }) => state.category[categoryName])
     .map(({ categoryName }) => categoryName);
-  console.log(filterCategory);
   temproryProduct =
     filterCategory.length > 0
       ? temproryProduct.filter(({ categoryName }) =>
@@ -59,7 +56,7 @@ export function ProductList() {
   return (
     <div className="products-menu">
       <Filters />
-      {loading ? (
+      {false ? (
         <div className="loader-product-list">
           <img src="/images/Gears.gif" />
         </div>
@@ -68,6 +65,7 @@ export function ProductList() {
           {temproryProduct.map((product) => {
             return (
               <ProductListCard
+                _id={product._id}
                 id={product.id}
                 name={product.name}
                 image={product.src}

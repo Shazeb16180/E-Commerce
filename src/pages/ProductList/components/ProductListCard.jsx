@@ -8,8 +8,24 @@ import {
   faStar as farStar,
   faHeart as farHeart,
 } from "@fortawesome/free-regular-svg-icons";
-import { NavLink } from "react-router-dom";
-export function ProductListCard({ id, name, image, rating, price }) {
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { DataContext } from "../../../context/DataContext";
+import { AuthContext } from "../../../context/AuthContext";
+import {
+  addToWishList,
+  removeFromWishList,
+} from "../../../services/wishListService";
+import { toast } from "react-toastify";
+import { isProductInCart, isProductInWishlist } from "../../../utils/utils";
+import { addToCart } from "../../../services/cartService";
+
+export function ProductListCard({ _id, id, name, image: src, rating, price }) {
+  // console.log(id);
+  const product = { _id, id, name, src, rating, price };
+  const { state, dispatch } = useContext(DataContext);
+  const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
   const starContent = [
     ...Array.from({ length: rating }, (_, index) => index + 1),
   ].map((rate) => (
@@ -29,11 +45,42 @@ export function ProductListCard({ id, name, image, rating, price }) {
         <div style={{ textAlign: "center" }}>{rate}</div>
       </div>
     ));
+
+  const isInCart = isProductInCart(state.cart, id);
+  const isInWishlist = isProductInWishlist(state.wishlist, id);
+
+  const addToCartHandler = () => {
+    token
+      ? isInCart
+        ? navigate("/cart")
+        : addToCart(dispatch, product, token, toast)
+      : navigate("/login");
+  };
+
+  const wishlistHandler = () => {
+    token
+      ? isInWishlist
+        ? removeFromWishList(_id, dispatch, token, toast)
+        : addToWishList(dispatch, product, token, toast)
+      : navigate("/login");
+  };
   return (
     <div className="product-list-card">
+      <div
+        className="favourite"
+        onClick={() => {
+          wishlistHandler();
+        }}
+      >
+        <FontAwesomeIcon
+          className="product-list-fav-icon"
+          icon={isInWishlist ? faHeart : farHeart}
+          color="#ef233c"
+        />
+      </div>
       <NavLink to={`/product/${id}`}>
         <div className="product-list-card-image">
-          <img src={image} alt="loading" />
+          <img src={src} alt="loading" />
         </div>
       </NavLink>
       <h3>{name}</h3>
@@ -44,7 +91,7 @@ export function ProductListCard({ id, name, image, rating, price }) {
       <div className="product-list-card-price">
         <h3>${price}</h3>
         <div className="product-list-card-cart">
-          <button>
+          <button onClick={() => addToCartHandler()}>
             <FontAwesomeIcon icon={faCartShopping} />
           </button>
         </div>

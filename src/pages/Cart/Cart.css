@@ -56,6 +56,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  justify-content: center;
 }
 .cart-bill {
   display: flex;
@@ -111,4 +112,11 @@
   border: none;
   background-color: #ef233c;
   color: white;
+}
+.cart-qty-btn {
+  border: none;
+  border-radius: 2px;
+}
+.quantity {
+  padding: 6px;
 }

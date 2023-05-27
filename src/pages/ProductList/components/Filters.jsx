@@ -4,7 +4,6 @@ import { HomeContext } from "../../../context/HomeContext";
 
 export function Filters() {
   const { state, dispatch } = useContext(DataContext);
-  const { categories } = useContext(HomeContext);
   return (
     <div className="product-filters">
       <div className="filter-header">
@@ -39,7 +38,7 @@ export function Filters() {
       </div>
       <div className="filter-category">
         <h3>Categories</h3>
-        {categories.map(({ categoryName }) => (
+        {state.categories.map(({ categoryName }) => (
           <div className="filter-product-category">
             <input
               type="checkbox"
