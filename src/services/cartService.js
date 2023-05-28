@@ -20,7 +20,7 @@ export async function addToCart(
       const { cart } = await response.json();
       console.log(cart);
       dispatch({ type: "ADD_CART", payload: cart });
-      // toast.success("Added To WishList!");
+      toast.success("Added To Cart!");
     } else {
       throw error;
     }
@@ -50,7 +50,7 @@ export async function updateToCart(
       const { cart } = await response.json();
       console.log(cart);
       dispatch({ type: "ADD_CART", payload: cart });
-      // toast.success("Added To WishList!");
+      toast.info("Updated To Cart!");
     } else {
       throw error;
     }
@@ -77,7 +77,7 @@ export async function removeFromCart(
       const { cart } = await response.json();
       console.log(cart);
       dispatch({ type: "REMOVE_CART", payload: cart });
-      //  toast.error("Removed From WishList!");
+      toast.error("Removed From Cart!");
     } else throw error;
   } catch (error) {
     console.error("Error");

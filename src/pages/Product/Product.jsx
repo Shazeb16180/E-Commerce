@@ -11,10 +11,11 @@ import { useContext, useEffect, useState } from "react";
 import { ProductContext } from "../../context/ProductContext";
 import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
-import { isProductInWishlist } from "../../utils/utils";
+import { isProductInCart, isProductInWishlist } from "../../utils/utils";
 import { addItemToWishlistHandler } from "../../backend/controllers/WishlistController";
 import { addToWishList } from "../../services/wishListService";
 import { toast } from "react-toastify";
+import { addToCart } from "../../services/cartService";
 export function Product() {
   const { productId } = useParams();
   const { token } = useContext(AuthContext);
@@ -31,6 +32,16 @@ export function Product() {
         : addToWishList(dispatch, product, token, toast)
       : navigate("/login");
   };
+  const isInCart = isProductInCart(state.cart, id);
+
+  const addToCartHandler = () => {
+    token
+      ? isInCart
+        ? navigate("/cart")
+        : addToCart(dispatch, product, token, toast)
+      : navigate("/login");
+  };
+
   //console.log(product);
   /*console.log(productId)
   const [product, setProduct] = useState({});
@@ -87,9 +98,9 @@ export function Product() {
               </div>
             </div>
             <div className="product-buttons">
-              <button>
+              <button onClick={() => addToCartHandler()}>
                 <FontAwesomeIcon icon={faCartShopping} />
-                Add to Cart
+                {isInCart ? "Go To Cart" : "Add To Cart"}
               </button>
               <button onClick={() => wishListHandler()}>
                 <FontAwesomeIcon icon={faHeart} />

@@ -57,6 +57,12 @@ export function dataReducer(state, action) {
       return { ...state, cart: [] };
     case "INTIALIZE_ADDR":
       return { ...state, address: action.payload };
+    case "LOGOUT":
+      return {
+        ...initialState,
+        categories: state.categories,
+        products: state.products,
+      };
     default:
       return {
         ...initialState,

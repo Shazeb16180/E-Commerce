@@ -15,6 +15,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import { isProductInWishlist } from "../../../utils/utils";
 import { addToWishList } from "../../../services/wishListService";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export function CartProductCard({ product }) {
   const { state, dispatch } = useContext(DataContext);
@@ -24,9 +25,9 @@ export function CartProductCard({ product }) {
   const wishListHandler = () =>
     isProductInWishlist(state.wishlist, id)
       ? navigate("/favourite")
-      : addToWishList(dispatch, product, token);
+      : addToWishList(dispatch, product, token, toast);
   const cartHandler = () => {
-    token ? removeFromCart(_id, dispatch, token) : navigate("/login");
+    token ? removeFromCart(_id, dispatch, token, toast) : navigate("/login");
   };
   return (
     <div className="cart-product-card">
@@ -45,7 +46,7 @@ export function CartProductCard({ product }) {
           <button
             className="cart-qty-btn"
             onClick={() => {
-              updateToCart(dispatch, _id, { type: "increment" }, token);
+              updateToCart(dispatch, _id, { type: "increment" }, token, toast);
             }}
           >
             +
@@ -55,7 +56,13 @@ export function CartProductCard({ product }) {
             className="cart-qty-btn"
             onClick={() => {
               if (qty > 1)
-                updateToCart(dispatch, _id, { type: "decrement" }, token);
+                updateToCart(
+                  dispatch,
+                  _id,
+                  { type: "decrement" },
+                  token,
+                  toast
+                );
               else removeFromCart(_id, dispatch, token);
             }}
           >

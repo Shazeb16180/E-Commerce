@@ -21,7 +21,7 @@ export function FavouriteCard({ product }) {
   const cartHandler = () =>
     isProductInCart(state.cart, id)
       ? navigate("/cart")
-      : addToCart(dispatch, product, token);
+      : addToCart(dispatch, product, token, toast);
   const wishlistHandler = () => {
     token
       ? removeFromWishList(_id, dispatch, token, toast)

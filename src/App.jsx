@@ -1,5 +1,6 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import Mockman from "mockman-js";
 import { Header } from "./component/Header/Header";
 import { Footer } from "./component/Footer/Footer";
@@ -12,6 +13,7 @@ import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/SignUp/SignUp";
 import { Protection } from "./component/Protection/Protection";
 import { ToastContainer } from "react-toastify";
+import { User } from "./pages/User/User";
 
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
       <Header />
       <ToastContainer
         position="top-right"
-        autoClose="500"
+        autoClose="800"
         limit="1"
         style={{ top: "4.5em", right: "0em" }}
       />
@@ -45,6 +47,14 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/user"
+          element={
+            <Protection>
+              <User />
+            </Protection>
+          }
+        />
         <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />

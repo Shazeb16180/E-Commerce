@@ -48,7 +48,9 @@ export function Header() {
           </NavLink>
         </li>
         <li>
-          <NavLink className="material-symbols-outlined">person</NavLink>
+          <NavLink to={"/user"} className="material-symbols-outlined">
+            person
+          </NavLink>
         </li>
       </ul>
     </nav>
