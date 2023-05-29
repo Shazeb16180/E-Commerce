@@ -6,7 +6,7 @@ export function AddressForm({
   setAddressForm,
   form,
   setForm,
-  formValue,
+  initialFormValue,
 }) {
   const { state, dispatch } = useContext(DataContext);
   return (
@@ -46,7 +46,7 @@ export function AddressForm({
           placeholder="Enter Postal Code"
           value={form.postalCode}
           onChange={(event) =>
-            setForm({ ...form, postalCode: event.target.value })
+            setForm({ ...form, pinCode: event.target.value })
           }
         />
         <input
@@ -62,7 +62,7 @@ export function AddressForm({
           className="save-btn"
           onClick={() => {
             const already =
-              state.address.find((addr) => addr.name === form.name) ===
+              state.address?.find((addr) => addr.name === form.name) ===
               undefined
                 ? false
                 : true;
@@ -82,7 +82,7 @@ export function AddressForm({
                 payload: [...state.address, form],
               });
             setAddressForm(!addressForm);
-            setForm(formValue);
+            setForm(initialFormValue);
           }}
         >
           save

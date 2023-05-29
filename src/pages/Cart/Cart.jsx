@@ -11,13 +11,14 @@ import {
   faStar as farStar,
   faHeart as farHeart,
 } from "@fortawesome/free-regular-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 import { CartProductCard } from "./components/CartProductCard";
 
 export function Cart() {
   const { state, dispatch } = useContext(DataContext);
+  const navigate = useNavigate();
   const price = state.cart.reduce((acc, curr) => {
     return (acc = acc + Number(curr.price) * curr.qty);
   }, 0);
@@ -70,7 +71,14 @@ export function Cart() {
                 <div className="cart-price-detail-price">${total}</div>
               </div>
             </div>
-            <button>Checkout</button>
+            <button
+              onClick={() => {
+                console.log("T");
+                navigate("/checkout");
+              }}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       ) : (

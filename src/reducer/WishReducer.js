@@ -1,3 +1,5 @@
+import { Navigate, useNavigate } from "react-router";
+
 export function wishReducer(wishState, action) {
   switch (action.type) {
     case "ADD_WISHLIST":
@@ -10,6 +12,7 @@ export function wishReducer(wishState, action) {
 
 const addFavourite = async ({ id, name }) => {
   // console.log(localStorage.getItem("encodedToken"));
+  const nav = useNavigate();
   console.log(name);
   try {
     const response = await fetch(`/api/user/wishlist`, {

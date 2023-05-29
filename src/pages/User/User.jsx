@@ -5,7 +5,7 @@ import { AddressCard } from "./component/AddressCard";
 import { AddressForm } from "./component/AddressForm";
 import { DataContext } from "../../context/DataContext";
 export function User() {
-  const formValue = {
+  const initialFormValue = {
     name: "",
     houseNo: "",
     city: "",
@@ -15,7 +15,7 @@ export function User() {
     phoneNumber: "",
   };
 
-  const [form, setForm] = useState(formValue);
+  const [form, setForm] = useState(initialFormValue);
   console.log(form);
   const { state, dispatch } = useContext(DataContext);
   const [active, setActive] = useState(true);
@@ -61,7 +61,7 @@ export function User() {
         setAddressForm={setAddressForm}
         form={form}
         setForm={setForm}
-        formValue={formValue}
+        initialFormValue={initialFormValue}
       />
     </div>
   );

@@ -29,20 +29,6 @@ export function AuthContextProvider({ children }) {
           setToken(encodedToken);
           localStorage.setItem("user", JSON.stringify({ user: foundUser }));
           setUser(user);
-          dispatch({
-            type: "INTIALIZE_ADDR",
-            payload: [
-              {
-                name: "Klaus",
-                houseNo: "8-1-398/A/40",
-                city: "Hyderabad",
-                state: "Telangana",
-                country: "India",
-                postalCode: "500008",
-                phoneNumber: "007",
-              },
-            ],
-          });
         } else throw error;
       } catch (error) {
         console.log("Error in Login User", error);
@@ -71,10 +57,6 @@ export function AuthContextProvider({ children }) {
         setToken(encodedToken);
         localStorage.setItem("user", JSON.stringify({ user: createdUser }));
         setUser(createdUser);
-        dispatch({
-          type: "INTIALIZE_ADDR",
-          payload: foundUser.address,
-        });
       }
     } catch (error) {
       console.log("Error in SignUp user", error);
@@ -83,10 +65,6 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     if (token) {
-      dispatch({
-        type: "INTIALIZE_ADDR",
-        payload: user.address,
-      });
     }
   }, []);
 

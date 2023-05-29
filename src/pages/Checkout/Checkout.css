@@ -1,0 +1,101 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  text-align: center;
+}
+.checkout-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px;
+}
+@media screen and (min-width: 768px) {
+  .checkout-content {
+    flex-direction: row;
+  }
+}
+.checkout-address {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.checkout-address-card {
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+}
+.checkout-address-card p {
+  margin: 0;
+}
+.checkout-address-card label {
+  font-weight: bold;
+}
+.checkout-order-details {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-radius: 5px;
+  background-color: #333;
+  color: white;
+}
+.checkout-address-card {
+  padding: 10px;
+}
+.checkout-od h3 {
+  text-align: center;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+  margin-bottom: 2px;
+}
+
+.row {
+  display: flex;
+}
+.left,
+.right,
+.left-heading,
+.right-heading {
+  margin: 0;
+}
+.right,
+.right-heading {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+.left-heading,
+.right-heading {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.left,
+.right {
+  margin-bottom: 2px;
+}
+.delivery {
+  margin: 0;
+}
+.delivery:first-of-type {
+  margin-top: 15px;
+}
+.delivery-btn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.delivery-btn button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ef233c;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+}

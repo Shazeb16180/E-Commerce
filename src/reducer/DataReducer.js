@@ -16,7 +16,17 @@ export const initialState = {
   products: [],
   cart: [],
   wishlist: [],
-  address: [],
+  address: [
+    {
+      name: "Klaus",
+      houseNo: "8-1-398/A/40 Tolichowki JanakiNagar Colony",
+      city: "Hyderabad",
+      state: "Telangana",
+      country: "India",
+      pinCode: "500008",
+      phoneNumber: "007",
+    },
+  ],
   search: "",
   form: {
     email: "",

@@ -8,5 +8,7 @@ export function Protection({ children }) {
   const { token } = useContext(AuthContext);
   // console.log("p");
   const location = useLocation();
+  console.log("Pro");
+  console.log(location);
   return token ? children : <Navigate state={location} to={"/login"} />;
 }

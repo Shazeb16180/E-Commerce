@@ -21,7 +21,7 @@ export function Login() {
   }, [loginForm.email, loginForm.password]);
   if (token) {
     console.log(location);
-    navigate(location.state.pathname || "/store", { replace: true });
+    navigate(location?.state?.pathname || "/store", { replace: true });
   }
   function loginHandler() {
     setLoginForm((form) => ({

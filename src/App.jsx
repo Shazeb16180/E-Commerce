@@ -14,6 +14,7 @@ import { SignUp } from "./pages/SignUp/SignUp";
 import { Protection } from "./component/Protection/Protection";
 import { ToastContainer } from "react-toastify";
 import { User } from "./pages/User/User";
+import { Checkout } from "./pages/Checkout/Checkout";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             </Protection>
           }
         />
+        <Route path="/checkout" element={<Checkout />} />
         <Route path="/mock" element={<Mockman />} />
       </Routes>
       <Footer />
