@@ -1,12 +1,4 @@
-import { isProductInCart } from "../utils/utils";
-
-export async function addToCart(
-  dispatch,
-  product,
-  token,
-  toast,
-  toastSetWhishListBtn
-) {
+export async function addToCart(dispatch, product, token, toast) {
   try {
     const response = await fetch(`/api/user/cart`, {
       method: "POST",
@@ -18,7 +10,6 @@ export async function addToCart(
     console.log(response);
     if (response.status === 201) {
       const { cart } = await response.json();
-      console.log(cart);
       dispatch({ type: "ADD_CART", payload: cart });
       toast.success("Added To Cart!");
     } else {
@@ -29,14 +20,7 @@ export async function addToCart(
   }
 }
 
-export async function updateToCart(
-  dispatch,
-  productId,
-  action,
-  token,
-  toast,
-  toastSetWhishListBtn
-) {
+export async function updateToCart(dispatch, productId, action, token, toast) {
   try {
     const response = await fetch(`/api/user/cart/${productId}`, {
       method: "POST",
@@ -45,7 +29,6 @@ export async function updateToCart(
       },
       body: JSON.stringify({ action }),
     });
-    console.log(response);
     if (response.status === 200) {
       const { cart } = await response.json();
       console.log(cart);
@@ -58,15 +41,8 @@ export async function updateToCart(
     console.error("Error");
   }
 }
-export async function removeFromCart(
-  id,
-  dispatch,
-  token,
-  toast,
-  toastSetWhishListBtn
-) {
+export async function removeFromCart(id, dispatch, token, toast) {
   try {
-    console.log(id);
     const response = await fetch(`/api/user/cart/${id}`, {
       method: "DELETE",
       headers: {
@@ -75,7 +51,6 @@ export async function removeFromCart(
     });
     if (response.status === 200) {
       const { cart } = await response.json();
-      console.log(cart);
       dispatch({ type: "REMOVE_CART", payload: cart });
       toast.error("Removed From Cart!");
     } else throw error;

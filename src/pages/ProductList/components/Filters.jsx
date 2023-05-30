@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
-import { HomeContext } from "../../../context/HomeContext";
 
 export function Filters() {
   const { state, dispatch } = useContext(DataContext);
@@ -27,7 +26,6 @@ export function Filters() {
         </div>
         <input
           onChange={(event) => {
-            console.log(event.target.value);
             dispatch({ type: "PRICE_RANGE", payload: event.target.value });
           }}
           type="range"
@@ -44,7 +42,6 @@ export function Filters() {
               type="checkbox"
               checked={state.category[categoryName]}
               onClick={(event) => {
-                console.log(event.target.checked);
                 dispatch({
                   type: "CATEGORY",
                   payload: { [categoryName]: event.target.checked },
@@ -64,7 +61,6 @@ export function Filters() {
             value={4}
             checked={state.rating === "4" ? "true" : ""}
             onClick={(event) => {
-              console.log(event.target.value);
               dispatch({ type: "RATING", payload: event.target.value });
             }}
           />
@@ -77,7 +73,6 @@ export function Filters() {
             value={3}
             checked={state.rating === "3" ? "true" : ""}
             onClick={(event) => {
-              console.log(event.target.value);
               dispatch({ type: "RATING", payload: event.target.value });
             }}
           />
@@ -90,7 +85,6 @@ export function Filters() {
             value={2}
             checked={state.rating === "2" ? "false" : ""}
             onClick={(event) => {
-              console.log(event.target.value);
               dispatch({ type: "RATING", payload: event.target.value });
             }}
           />
@@ -105,7 +99,6 @@ export function Filters() {
               state.rating === "1" || state.rating === "false" ? "true" : ""
             }
             onClick={(event) => {
-              console.log(event.target.value);
               dispatch({ type: "RATING", payload: event.target.value });
             }}
           />

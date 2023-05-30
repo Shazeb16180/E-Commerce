@@ -15,11 +15,16 @@ import { Protection } from "./component/Protection/Protection";
 import { ToastContainer } from "react-toastify";
 import { User } from "./pages/User/User";
 import { Checkout } from "./pages/Checkout/Checkout";
+import { useContext } from "react";
+import { DataContext } from "./context/DataContext";
+import { Loader } from "./component/Loader/Loader";
 
 function App() {
+  const { loader } = useContext(DataContext);
   return (
     <div className="App">
       <Header />
+      {loader && <Loader />}
       <ToastContainer
         position="top-right"
         autoClose="800"

@@ -1,10 +1,11 @@
-import { useContext, useState } from "react";
 import "./User.css";
+import { useContext, useEffect, useState } from "react";
 import { ProfileCard } from "./component/ProfileCard";
 import { AddressCard } from "./component/AddressCard";
 import { AddressForm } from "./component/AddressForm";
 import { DataContext } from "../../context/DataContext";
 export function User() {
+  const { setLoader } = useContext(DataContext);
   const initialFormValue = {
     name: "",
     houseNo: "",
@@ -14,10 +15,7 @@ export function User() {
     postalCode: "",
     phoneNumber: "",
   };
-
   const [form, setForm] = useState(initialFormValue);
-  console.log(form);
-  const { state, dispatch } = useContext(DataContext);
   const [active, setActive] = useState(true);
   const [addressForm, setAddressForm] = useState(false);
   const component = active ? (
@@ -29,6 +27,12 @@ export function User() {
       setForm={setForm}
     />
   );
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
 
   return (
     <div className="user-details">

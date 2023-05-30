@@ -4,12 +4,8 @@ import {
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useContext, useState } from "react";
-import {
-  addToCart,
-  removeFromCart,
-  updateToCart,
-} from "../../../services/cartService";
+import { useContext } from "react";
+import { removeFromCart, updateToCart } from "../../../services/cartService";
 import { DataContext } from "../../../context/DataContext";
 import { AuthContext } from "../../../context/AuthContext";
 import { isProductInWishlist } from "../../../utils/utils";

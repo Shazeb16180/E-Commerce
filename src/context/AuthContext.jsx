@@ -9,7 +9,6 @@ export function AuthContextProvider({ children }) {
   const [user, setUser] = useState(localStorageUser?.user);
   const { dispatch } = useContext(DataContext);
   const loginUser = async (email, password) => {
-    console.log(JSON.stringify({ email, password }));
     if (email && password !== "") {
       try {
         const response = await fetch(`/api/auth/login`, {

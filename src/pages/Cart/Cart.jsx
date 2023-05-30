@@ -1,23 +1,13 @@
 import "./Cart.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faCartShopping,
-  faHeart,
-  faTag,
-  faFaceGrimace,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faStar as farStar,
-  faHeart as farHeart,
-} from "@fortawesome/free-regular-svg-icons";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { faTag, faFaceGrimace } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
 import { CartProductCard } from "./components/CartProductCard";
 
 export function Cart() {
-  const { state, dispatch } = useContext(DataContext);
+  const { state, setLoader } = useContext(DataContext);
   const navigate = useNavigate();
   const price = state.cart.reduce((acc, curr) => {
     return (acc = acc + Number(curr.price) * curr.qty);
@@ -26,6 +16,12 @@ export function Cart() {
   const deliveryCharges = 100;
   const couponDiscount = 100;
   const total = price + deliveryCharges - (discount + couponDiscount);
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
   return (
     <div className="cart-container">
       <h1 className="cart-heading">My Cart</h1>
@@ -34,7 +30,7 @@ export function Cart() {
           <div className="cart-products">
             {state.cart.map((product) => (
               <CartProductCard product={product} />
-            ))}{" "}
+            ))}
           </div>
           <div className="cart-bill">
             <div className="coupon">
@@ -73,7 +69,6 @@ export function Cart() {
             </div>
             <button
               onClick={() => {
-                console.log("T");
                 navigate("/checkout");
               }}
             >

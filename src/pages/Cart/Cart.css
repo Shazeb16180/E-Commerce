@@ -112,6 +112,10 @@
   border: none;
   background-color: #ef233c;
   color: white;
+  cursor: pointer;
+}
+.cart-bill button:active {
+  background-color: #333;
 }
 .cart-qty-btn {
   border: none;

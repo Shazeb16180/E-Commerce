@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
+import { toast } from "react-toastify";
 
 export function AddressCard({ addressForm, setAddressForm, setForm }) {
   const { state, dispatch } = useContext(DataContext);
@@ -35,6 +36,7 @@ export function AddressCard({ addressForm, setAddressForm, setForm }) {
                           (ad) => ad.name !== addr.name
                         ),
                       });
+                      toast.error("Address Removed");
                     }}
                   >
                     Remove

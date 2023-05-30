@@ -33,6 +33,9 @@ h1 {
 .checkout-address-card p {
   margin: 0;
 }
+.checkout-address-card input {
+  cursor: pointer;
+}
 .checkout-address-card label {
   font-weight: bold;
 }
@@ -98,4 +101,8 @@ h1 {
   color: white;
   font-weight: bold;
   font-size: larger;
+  cursor: pointer;
+}
+.delivery-btn button:active {
+  background-color: #333;
 }

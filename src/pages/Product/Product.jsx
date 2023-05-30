@@ -7,21 +7,18 @@ import {
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
-import { ProductContext } from "../../context/ProductContext";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
 import { isProductInCart, isProductInWishlist } from "../../utils/utils";
-import { addItemToWishlistHandler } from "../../backend/controllers/WishlistController";
 import { addToWishList } from "../../services/wishListService";
 import { toast } from "react-toastify";
 import { addToCart } from "../../services/cartService";
 export function Product() {
+  const { state, dispatch, setLoader } = useContext(DataContext);
   const { productId } = useParams();
   const { token } = useContext(AuthContext);
-  const { state, dispatch } = useContext(DataContext);
   const navigate = useNavigate();
-  console.log(state.products);
   const product = state.products.find(({ id }) => id === productId);
   const { id, name, price, src, rating } = product;
   const isInWishlist = isProductInWishlist(state.wishlist, productId);
@@ -33,7 +30,6 @@ export function Product() {
       : navigate("/login");
   };
   const isInCart = isProductInCart(state.cart, id);
-
   const addToCartHandler = () => {
     token
       ? isInCart
@@ -41,19 +37,12 @@ export function Product() {
         : addToCart(dispatch, product, token, toast)
       : navigate("/login");
   };
-
-  //console.log(product);
-  /*console.log(productId)
-  const [product, setProduct] = useState({});
-  const [loading, setLoading] = useState(true);
-  const getData = async () => {
-    const response = await fetch(`/api/products/${productId}`);
-    const { product: dbProduct } = await response.json();
-    console.log(dbProduct);
-  };
   useEffect(() => {
-    getData();
-  }, []);*/
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
     <div className="product-container">
       <div className="product-card">
@@ -65,7 +54,7 @@ export function Product() {
             <h3>{name}</h3>
             <span>{rating}</span>
             <FontAwesomeIcon icon={faStar} />
-            <h3>{price}</h3>
+            <h3>${price}</h3>
           </div>
           <div className="product-details-body">
             <div className="product-details-perks">

@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
 import "./Checkout.css";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 export function Checkout() {
-  const { state } = useContext(DataContext);
+  const { state, setLoader } = useContext(DataContext);
   const price = state.cart.reduce((acc, curr) => {
     return (acc = acc + Number(curr.price) * curr.qty);
   }, 0);
@@ -11,6 +11,12 @@ export function Checkout() {
   const couponDiscount = 100;
   const total = price + deliveryCharges - (discount + couponDiscount);
   const [address, setAddress] = useState(state.address[0]);
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
   return (
     <div className="checkout-container">
       <h1>Checkout</h1>

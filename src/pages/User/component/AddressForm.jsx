@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
+import { toast } from "react-toastify";
 
 export function AddressForm({
   addressForm,
@@ -76,11 +77,14 @@ export function AddressForm({
                   ),
                 ],
               });
-            } else
+              toast.info("Address Updated");
+            } else {
               dispatch({
                 type: "INTIALIZE_ADDR",
                 payload: [...state.address, form],
               });
+              toast.success("Address Added");
+            }
             setAddressForm(!addressForm);
             setForm(initialFormValue);
           }}
@@ -89,7 +93,10 @@ export function AddressForm({
         </button>
         <button
           className="cancel-btn"
-          onClick={() => setAddressForm(!addressForm)}
+          onClick={() => {
+            setAddressForm(!addressForm);
+            toast.error("Canceled Address");
+          }}
         >
           cancel
         </button>

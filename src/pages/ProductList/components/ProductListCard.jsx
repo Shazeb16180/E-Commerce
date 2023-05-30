@@ -9,7 +9,7 @@ import {
   faHeart as farHeart,
 } from "@fortawesome/free-regular-svg-icons";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
 import { AuthContext } from "../../../context/AuthContext";
 import {
@@ -21,7 +21,6 @@ import { isProductInCart, isProductInWishlist } from "../../../utils/utils";
 import { addToCart } from "../../../services/cartService";
 
 export function ProductListCard({ _id, id, name, image: src, rating, price }) {
-  // console.log(id);
   const product = { _id, id, name, src, rating, price };
   const { state, dispatch } = useContext(DataContext);
   const { token } = useContext(AuthContext);

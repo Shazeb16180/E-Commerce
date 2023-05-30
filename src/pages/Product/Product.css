@@ -76,4 +76,13 @@
   padding: 10px;
   border-radius: 5px;
   border: none;
+  cursor: pointer;
+}
+.product-buttons button:hover {
+  background-color: #ef233c;
+  color: white;
+}
+.product-buttons button:active {
+  background-color: #333;
+  color: white;
 }

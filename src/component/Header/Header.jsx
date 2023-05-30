@@ -1,18 +1,18 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Search } from "@mui/icons-material";
 import {
   faHeart,
   faSearch,
+  faShoppingBag,
   faShoppingCart,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 export function Header() {
   const { state, dispatch } = useContext(DataContext);
   const navigate = useNavigate();
-
   return (
     <nav className="nav-bar">
       <NavLink to={"/"}>
@@ -30,9 +30,9 @@ export function Header() {
             placeholder="Search For Parts"
           />
         </div>
-        <li>
-          <NavLink to={"/store"} className="material-symbols-outlined">
-            local_mall
+        <li className="number-logo">
+          <NavLink to={"/store"}>
+            <FontAwesomeIcon icon={faShoppingBag} />
           </NavLink>
         </li>
         <li className="number-logo">
@@ -47,9 +47,9 @@ export function Header() {
             <FontAwesomeIcon icon={faShoppingCart} />
           </NavLink>
         </li>
-        <li>
-          <NavLink to={"/user"} className="material-symbols-outlined">
-            person
+        <li className="number-logo">
+          <NavLink to={"/user"}>
+            <FontAwesomeIcon icon={faUser} />
           </NavLink>
         </li>
       </ul>

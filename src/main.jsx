@@ -4,8 +4,6 @@ import App from "./App.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import { makeServer } from "./server.js";
-import { HomeContextProvider } from "./context/HomeContext.jsx";
-import { ProductContextProvider } from "./context/ProductContext.jsx";
 import { DataContextProvider } from "./context/DataContext.jsx";
 import { AuthContextProvider } from "./context/AuthContext.jsx";
 

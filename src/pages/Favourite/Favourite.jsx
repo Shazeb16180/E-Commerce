@@ -1,25 +1,18 @@
 import "./Favourite.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faCartShopping,
-  faHeart,
-  faTag,
-  faSadCry,
-  faFaceSadCry,
-  faFaceGrimace,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faStar as farStar,
-  faHeart as farHeart,
-} from "@fortawesome/free-regular-svg-icons";
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { faFaceGrimace } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
 import { FavouriteCard } from "./component/FavouriteCard";
 
 export function Favourite() {
-  const { state, dispatch } = useContext(DataContext);
+  const { state, setLoader } = useContext(DataContext);
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
   return (
     <div className="favourite-container">
       <h1 className="favourite-heading">Favourite</h1>

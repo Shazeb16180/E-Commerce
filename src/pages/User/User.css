@@ -24,6 +24,7 @@
   padding: 10px;
   border: none;
   color: white;
+  cursor: pointer;
 }
 .details,
 .account-setting,
@@ -63,6 +64,10 @@
   border-radius: 5px;
   background-color: #ef233c;
   color: white;
+  cursor: pointer;
+}
+.btn button:active {
+  background-color: #333;
 }
 .address-details {
   display: flex;
@@ -77,14 +82,17 @@
   border-radius: 5px;
   margin: 5px;
   background-color: transparent;
+  cursor: pointer;
 }
 .edit-btn {
   border: 1px solid #333;
   color: #333;
+  cursor: pointer;
 }
 .remove-btn {
   border: 1px solid #ef233c;
   color: #ef233c;
+  cursor: pointer;
 }
 .form-input {
   display: flex;
@@ -105,9 +113,11 @@ input {
 }
 .save-btn {
   background-color: lightskyblue;
+  cursor: pointer;
 }
 .cancel-btn {
   background-color: #ef233c;
+  cursor: pointer;
 }
 .user-card-none {
   display: none;

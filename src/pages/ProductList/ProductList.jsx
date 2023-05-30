@@ -1,24 +1,11 @@
 import "./ProductList.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faStar,
-  faCartShopping,
-  faHeart,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faStar as farStar,
-  faHeart as farHeart,
-} from "@fortawesome/free-regular-svg-icons";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { Filters } from "./components/Filters";
 import { ProductListCard } from "./components/ProductListCard";
-import { useContext } from "react";
-import { ProductContext } from "../../context/ProductContext";
 import { DataContext } from "../../context/DataContext";
-import { HomeContext } from "../../context/HomeContext";
 
 export function ProductList() {
-  const { state, wishState, wishDispatch } = useContext(DataContext);
+  const { state, setLoader } = useContext(DataContext);
   let temproryProduct = state.products.filter(({ name }) =>
     name.toLowerCase().includes(state.search)
   );
@@ -53,29 +40,29 @@ export function ProductList() {
             : true
         )
       : temproryProduct;
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
     <div className="products-menu">
       <Filters />
-      {false ? (
-        <div className="loader-product-list">
-          <img src="/images/Gears.gif" />
-        </div>
-      ) : (
-        <div className="product-list">
-          {temproryProduct.map((product) => {
-            return (
-              <ProductListCard
-                _id={product._id}
-                id={product.id}
-                name={product.name}
-                image={product.src}
-                rating={product.rating}
-                price={product.price}
-              />
-            );
-          })}
-        </div>
-      )}
+      <div className="product-list">
+        {temproryProduct.map(({ _id, id, name, src, rating, price }) => {
+          return (
+            <ProductListCard
+              _id={_id}
+              id={id}
+              name={name}
+              image={src}
+              rating={rating}
+              price={price}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

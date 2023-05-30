@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { removeFromWishList } from "../../../services/wishListService";
 import { DataContext } from "../../../context/DataContext";
-import { isProductInCart, isProductInWishlist } from "../../../utils/utils";
+import { isProductInCart } from "../../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,

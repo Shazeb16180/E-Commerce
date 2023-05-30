@@ -46,6 +46,11 @@
   background-color: #ef233c;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-buttons button:active {
+  background-color: #333;
 }
 .login-card a {
   color: #ef233c;

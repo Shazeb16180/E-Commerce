@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export function wishReducer(wishState, action) {
   switch (action.type) {
@@ -11,9 +11,7 @@ export function wishReducer(wishState, action) {
 }
 
 const addFavourite = async ({ id, name }) => {
-  // console.log(localStorage.getItem("encodedToken"));
   const nav = useNavigate();
-  console.log(name);
   try {
     const response = await fetch(`/api/user/wishlist`, {
       method: "POST",
@@ -33,11 +31,10 @@ const addFavourite = async ({ id, name }) => {
       console.log("Error ....");
     }
   } catch (error) {
-    console.error(error);
+    console.error("Error");
   }
 };
 const getFavourite = async () => {
-  // console.log(localStorage.getItem("encodedToken"));
   try {
     const response = await fetch(`/api/user/wishlist`, {
       method: "GET",
@@ -52,6 +49,6 @@ const getFavourite = async () => {
       return wishlist;
     } else console.log("Error ....");
   } catch (error) {
-    console.error(error);
+    console.error("Error");
   }
 };

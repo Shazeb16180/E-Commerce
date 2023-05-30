@@ -1,6 +1,5 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { dataReducer, initialState } from "../reducer/DataReducer";
-import { useLocation, useNavigate } from "react-router";
 import { wishReducer } from "../reducer/WishReducer";
 
 export const DataContext = createContext();
@@ -8,6 +7,7 @@ export const DataContext = createContext();
 export function DataContextProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const [wishState, wishDispatch] = useReducer(wishReducer, []);
+  const [loader, setLoader] = useState(false);
   console.log(state);
   useEffect(() => {
     (async () => {
@@ -41,6 +41,8 @@ export function DataContextProvider({ children }) {
         dispatch,
         wishState,
         wishDispatch,
+        loader,
+        setLoader,
       }}
     >
       {children}

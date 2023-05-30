@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../../../context/AuthContext";
 import { DataContext } from "../../../context/DataContext";
+import { toast } from "react-toastify";
 
 export function ProfileCard() {
   const { setToken, setUser } = useContext(AuthContext);
@@ -14,6 +15,7 @@ export function ProfileCard() {
     setToken();
     setUser("");
     navigate("/");
+    toast.success("Logged Out");
   };
   return (
     <div className="profile-card">

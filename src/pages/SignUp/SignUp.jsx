@@ -1,13 +1,15 @@
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
-import { DataContext } from "../../context/DataContext";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { DataContext } from "../../context/DataContext";
 
 export function SignUp() {
+  const { token, signUpUser } = useContext(AuthContext);
+  const { setLoader } = useContext(DataContext);
   const [type, setType] = useState({ text1: true, text2: true });
+  const [signUpForm, setSignUpForm] = useState(signUpFields);
   const icon1 = type.text1 ? faEyeSlash : faEye;
   const icon2 = type.text2 ? faEyeSlash : faEye;
   const signUpFields = {
@@ -16,8 +18,6 @@ export function SignUp() {
     firstName: "",
     lastName: "",
   };
-  const [signUpForm, setSignUpForm] = useState(signUpFields);
-  const { token, signUpUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const signUpHandler = () => {
     const { email, password, firstName, lastName } = signUpForm;
@@ -33,13 +33,14 @@ export function SignUp() {
   };
 
   if (token) {
-    navigate("/product");
+    navigate("/store");
   }
-
-  //const { handleSignUp, dispatch } = useContext(DataContext);
-  const location = useLocation();
-  console.log(location);
-
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
   return (
     <div className="login-container">
       <div className="login-card">
@@ -59,7 +60,7 @@ export function SignUp() {
             <input
               placeholder="Last Name"
               onChange={(event) => {
-                (event) => fillFormValue(event, "lastName");
+                fillFormValue(event, "lastName");
               }}
             />
           </div>
@@ -68,7 +69,7 @@ export function SignUp() {
             <input
               placeholder="Email"
               onChange={(event) => {
-                (event) => fillFormValue(event, "email");
+                fillFormValue(event, "email");
               }}
             />
           </div>
@@ -81,7 +82,6 @@ export function SignUp() {
             <FontAwesomeIcon
               icon={icon1}
               onClick={() => {
-                console.log(type);
                 setType({ ...type, text1: !type.text1 });
               }}
             />
@@ -92,13 +92,12 @@ export function SignUp() {
               placeholder="Password"
               type={type.text2 ? "password" : "text"}
               onChange={(event) => {
-                (event) => fillFormValue(event, "password");
+                fillFormValue(event, "password");
               }}
             />
             <FontAwesomeIcon
               icon={icon2}
               onClick={() => {
-                console.log(type);
                 setType({ ...type, text2: !type.text2 });
               }}
             />

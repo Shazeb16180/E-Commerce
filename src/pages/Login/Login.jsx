@@ -1,32 +1,37 @@
-import { useContext, useEffect, useState } from "react";
 import "./Login.css";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { DataContext } from "../../context/DataContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { text } from "@fortawesome/fontawesome-svg-core";
 import { AuthContext } from "../../context/AuthContext";
 
 export function Login() {
+  const { setLoader } = useContext(DataContext);
+  const { token, loginUser } = useContext(AuthContext);
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [type, setType] = useState(true);
+  const loginHandler = () => {
+    setLoginForm((form) => ({
+      ...form,
+    }));
+  };
   const navigate = useNavigate();
-  const { token, loginUser } = useContext(AuthContext);
   const icon = type ? faEyeSlash : faEye;
   const location = useLocation();
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 500);
+  }, []);
   useEffect(() => {
     (async () => {
       loginUser(loginForm.email, loginForm.password);
     })();
   }, [loginForm.email, loginForm.password]);
   if (token) {
-    console.log(location);
-    navigate(location?.state?.pathname || "/store", { replace: true });
-  }
-  function loginHandler() {
-    setLoginForm((form) => ({
-      ...form,
-    }));
+    navigate(location.state?.pathname || "/store", { replace: true });
   }
   return (
     <div className="login-container">
@@ -56,7 +61,6 @@ export function Login() {
             <FontAwesomeIcon
               icon={icon}
               onClick={() => {
-                console.log(type);
                 setType(!type);
               }}
             />
