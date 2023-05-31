@@ -7,8 +7,8 @@ export const DataContext = createContext();
 export function DataContextProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const [wishState, wishDispatch] = useReducer(wishReducer, []);
+  const [drawer, setDrawer] = useState(false);
   const [loader, setLoader] = useState(false);
-  console.log(state);
   useEffect(() => {
     (async () => {
       try {
@@ -43,6 +43,8 @@ export function DataContextProvider({ children }) {
         wishDispatch,
         loader,
         setLoader,
+        drawer,
+        setDrawer,
       }}
     >
       {children}

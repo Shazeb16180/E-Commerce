@@ -2,7 +2,9 @@ import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
+  faHamburger,
   faHeart,
+  faNavicon,
   faSearch,
   faShoppingBag,
   faShoppingCart,
@@ -11,10 +13,21 @@ import {
 import { useContext } from "react";
 import { DataContext } from "../../context/DataContext";
 export function Header() {
-  const { state, dispatch } = useContext(DataContext);
+  const { state, dispatch, drawer, setDrawer } = useContext(DataContext);
   const navigate = useNavigate();
   return (
     <nav className="nav-bar">
+      {window.location.href.includes("/store") && (
+        <button
+          className="nav-button"
+          onClick={() => {
+            setDrawer(!drawer);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+        >
+          <FontAwesomeIcon icon={faNavicon} />
+        </button>
+      )}
       <NavLink to={"/"}>
         <h1 className="nav-title">SPARE PARTS</h1>
       </NavLink>

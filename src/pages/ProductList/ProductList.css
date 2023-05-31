@@ -1,6 +1,12 @@
 .products-menu {
   display: flex;
   gap: 10px;
+  position: relative;
+}
+@media screen and (min-width: 768px) {
+  .product-menu {
+    position: unset;
+  }
 }
 .product-filters {
   display: flex;
@@ -8,6 +14,25 @@
   padding: 10px;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  position: absolute;
+  left: -39.89rem;
+  z-index: 1;
+  background-color: white;
+}
+@media screen and (min-width: 768px) {
+  .product-filters {
+    position: unset;
+    z-index: 0;
+    height: unset;
+  }
+}
+.trans-on {
+  left: 0;
+  transition: left 0.5s ease-out;
+}
+.trans-off {
+  left: -39.89rem;
+  transition: left 0.5s ease-out;
 }
 .product-filters input {
   border: 1px solid #333;

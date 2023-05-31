@@ -3,43 +3,25 @@ import { useContext, useEffect } from "react";
 import { Filters } from "./components/Filters";
 import { ProductListCard } from "./components/ProductListCard";
 import { DataContext } from "../../context/DataContext";
+import {
+  filterCategories,
+  rangeProducts,
+  ratingProducts,
+  searchProduct,
+  sortProducts,
+} from "../../utils/utils";
 
 export function ProductList() {
-  const { state, setLoader } = useContext(DataContext);
-  let temproryProduct = state.products.filter(({ name }) =>
-    name.toLowerCase().includes(state.search)
+  const { state, setLoader, drawer, setDrawer } = useContext(DataContext);
+  let temproryProducts = searchProduct(state.products, state.search);
+  temproryProducts = rangeProducts(temproryProducts, state.priceRange);
+  temproryProducts = ratingProducts(temproryProducts, state.rating);
+  temproryProducts = sortProducts(state.sort, temproryProducts);
+  temproryProducts = filterCategories(
+    state.categories,
+    temproryProducts,
+    state.category
   );
-  temproryProduct = temproryProduct.filter(
-    ({ price }) => Number(price) < Number(state.priceRange)
-  );
-  temproryProduct = temproryProduct.filter(
-    ({ rating }) =>
-      Number(rating) >= Number(state.rating === "false" ? 1 : state.rating)
-  );
-  switch (state.sort) {
-    case "L-H":
-      temproryProduct = [...temproryProduct].sort((a, b) => a.price - b.price);
-      break;
-    case "H-L":
-      temproryProduct = [...temproryProduct].sort((a, b) => b.price - a.price);
-      break;
-    case "None":
-      temproryProduct = [...temproryProduct];
-      break;
-    default:
-      temproryProduct = [...temproryProduct];
-  }
-  const filterCategory = state.categories
-    .filter(({ categoryName }) => state.category[categoryName])
-    .map(({ categoryName }) => categoryName);
-  temproryProduct =
-    filterCategory.length > 0
-      ? temproryProduct.filter(({ categoryName }) =>
-          filterCategory.find((fc) => fc === categoryName) === undefined
-            ? false
-            : true
-        )
-      : temproryProduct;
   useEffect(() => {
     setLoader(true);
     setTimeout(() => {
@@ -50,7 +32,7 @@ export function ProductList() {
     <div className="products-menu">
       <Filters />
       <div className="product-list">
-        {temproryProduct.map(({ _id, id, name, src, rating, price }) => {
+        {temproryProducts.map(({ _id, id, name, src, rating, price }) => {
           return (
             <ProductListCard
               _id={_id}

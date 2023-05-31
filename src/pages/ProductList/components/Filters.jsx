@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
 
 export function Filters() {
-  const { state, dispatch } = useContext(DataContext);
+  const { state, dispatch, drawer } = useContext(DataContext);
   return (
-    <div className="product-filters">
+    <div className={`product-filters trans-${drawer ? "on" : "off"}`}>
       <div className="filter-header">
         <h3>Filters</h3>
         <div>
