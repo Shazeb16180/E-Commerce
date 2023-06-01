@@ -7,7 +7,6 @@ export async function addToCart(dispatch, product, token, toast) {
       },
       body: JSON.stringify({ product }),
     });
-    console.log(response);
     if (response.status === 201) {
       const { cart } = await response.json();
       dispatch({ type: "ADD_CART", payload: cart });

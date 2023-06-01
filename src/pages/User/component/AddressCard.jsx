@@ -2,19 +2,24 @@ import { useContext } from "react";
 import { DataContext } from "../../../context/DataContext";
 import { toast } from "react-toastify";
 
-export function AddressCard({ addressForm, setAddressForm, setForm }) {
+export function AddressCard({
+  initalFormValue,
+  addressForm,
+  setAddressForm,
+  setForm,
+}) {
   const { state, dispatch } = useContext(DataContext);
   return (
     <div className="address-card">
       <div className="details">
         <h3>My Addresses</h3>
         {state.address &&
-          state.address.map((addr) => {
+          state.address.map((addr, index) => {
             return (
-              <div className="address-details">
+              <div key={index} className="address-details">
                 <p className="variable">{addr.name}</p>
                 <p>{`${addr.houseNo} ${addr.city} ${addr.state}`}</p>
-                <p>{addr.postalCode}</p>
+                <p>{addr.pinCode}</p>
                 <p>{addr.country}</p>
                 <p>Phone Number:{addr.phoneNumber}</p>
                 <div className="addr-btn">
@@ -46,7 +51,12 @@ export function AddressCard({ addressForm, setAddressForm, setForm }) {
             );
           })}
         <div className="btn">
-          <button onClick={() => setAddressForm(!addressForm)}>
+          <button
+            onClick={() => {
+              setForm({ ...initalFormValue });
+              setAddressForm(!addressForm);
+            }}
+          >
             Add New Address
           </button>
         </div>

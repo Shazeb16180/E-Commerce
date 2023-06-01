@@ -35,6 +35,7 @@ export function ProductList() {
         {temproryProducts.map(({ _id, id, name, src, rating, price }) => {
           return (
             <ProductListCard
+              key={_id}
               _id={_id}
               id={id}
               name={name}

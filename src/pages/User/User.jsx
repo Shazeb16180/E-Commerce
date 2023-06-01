@@ -12,7 +12,7 @@ export function User() {
     city: "",
     state: "",
     country: "",
-    postalCode: "",
+    pinCode: "",
     phoneNumber: "",
   };
   const [form, setForm] = useState(initialFormValue);
@@ -25,6 +25,7 @@ export function User() {
       addressForm={addressForm}
       setAddressForm={setAddressForm}
       setForm={setForm}
+      initialFormValue={initialFormValue}
     />
   );
   useEffect(() => {

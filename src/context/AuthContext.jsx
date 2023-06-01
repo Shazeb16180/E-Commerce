@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
@@ -30,7 +31,7 @@ export function AuthContextProvider({ children }) {
           setUser(user);
         } else throw error;
       } catch (error) {
-        console.log("Error in Login User", error);
+        console.log("Error in Login User");
       }
     }
   };

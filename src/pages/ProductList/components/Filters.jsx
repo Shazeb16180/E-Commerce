@@ -37,10 +37,10 @@ export function Filters() {
       <div className="filter-category">
         <h3>Categories</h3>
         {state.categories.map(({ categoryName }) => (
-          <div className="filter-product-category">
+          <div key={categoryName} className="filter-product-category">
             <input
               type="checkbox"
-              checked={state.category[categoryName]}
+              defaultChecked={state.category[categoryName]}
               onClick={(event) => {
                 dispatch({
                   type: "CATEGORY",
@@ -59,7 +59,7 @@ export function Filters() {
             type="radio"
             name="rating"
             value={4}
-            checked={state.rating === "4" ? "true" : ""}
+            defaultChecked={state.rating === "4" ? "true" : ""}
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -71,7 +71,7 @@ export function Filters() {
             type="radio"
             name="rating"
             value={3}
-            checked={state.rating === "3" ? "true" : ""}
+            defaultChecked={state.rating === "3" ? "true" : ""}
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -83,7 +83,7 @@ export function Filters() {
             type="radio"
             name="rating"
             value={2}
-            checked={state.rating === "2" ? "false" : ""}
+            defaultChecked={state.rating === "2" ? "false" : ""}
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -95,7 +95,7 @@ export function Filters() {
             type="radio"
             name="rating"
             value={1}
-            checked={
+            defaultChecked={
               state.rating === "1" || state.rating === "false" ? "true" : ""
             }
             onClick={(event) => {
@@ -112,7 +112,7 @@ export function Filters() {
             type="radio"
             name="sort"
             value={"L-H"}
-            checked={
+            defaultChecked={
               state.sort === "None" ? "" : state.sort === "L-H" ? "false" : ""
             }
             onClick={(event) => {
@@ -126,7 +126,7 @@ export function Filters() {
             type="radio"
             name="sort"
             value={"H-L"}
-            checked={
+            defaultChecked={
               state.sort === "None" ? "" : state.sort === "H-L" ? "false" : ""
             }
             onClick={(event) => {

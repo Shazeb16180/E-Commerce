@@ -18,7 +18,9 @@ export function Favourite() {
       <h1 className="favourite-heading">Favourite</h1>
       <div className="favourite-items">
         {state.wishlist.length > 0 ? (
-          state.wishlist.map((product) => <FavouriteCard product={product} />)
+          state.wishlist.map((product) => (
+            <FavouriteCard key={product.id} product={product} />
+          ))
         ) : (
           <div className="empty-wishlist">
             <h1>

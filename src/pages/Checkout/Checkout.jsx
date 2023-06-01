@@ -1,15 +1,21 @@
 import "./Checkout.css";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 export function Checkout() {
-  const { state, setLoader } = useContext(DataContext);
-  const price = state.cart.reduce((acc, curr) => {
-    return (acc = acc + Number(curr.price) * curr.qty);
-  }, 0);
-  const discount = 200;
-  const deliveryCharges = 100;
-  const couponDiscount = 100;
-  const total = price + deliveryCharges - (discount + couponDiscount);
+  const { state, dispatch, setLoader, cartData, cartState } =
+    useContext(DataContext);
+  const navigate = useNavigate();
+  const orderSuccess = () => {
+    dispatch({ type: "ORDER_SUCCESS" });
+    navigate("/");
+    toast.success("Order Successfully Placed");
+  };
+  const { price, discount, deliveryCharges } = cartData;
+  const total = price + deliveryCharges - discount;
+  const { coupon } = cartState;
   const [address, setAddress] = useState(state.address[0]);
   useEffect(() => {
     setLoader(true);
@@ -23,8 +29,8 @@ export function Checkout() {
       <div className="checkout-content">
         {state.address.length > 0 ? (
           <div className="checkout-address">
-            {state.address.map((addr) => (
-              <div className="checkout-address-card">
+            {state.address.map((addr, index) => (
+              <div key={index} className="checkout-address-card">
                 <input
                   name="address"
                   type="radio"
@@ -60,7 +66,7 @@ export function Checkout() {
               <p className="right-heading">Qty</p>
             </div>
             {state.cart.map(({ name, qty }) => (
-              <div className="row">
+              <div key={name} className="row">
                 <p className="left">{name}</p>
                 <p className="right">{qty}</p>
               </div>
@@ -82,11 +88,11 @@ export function Checkout() {
             </div>
             <div className="row">
               <p className="left">Coupon Discount</p>
-              <p className="right">${couponDiscount}</p>
+              <p className="right">${coupon}%</p>
             </div>
             <div className="row">
               <p className="left-heading">Total Amount</p>
-              <p className="right-heading">${total}</p>
+              <p className="right-heading">${total - total * (coupon / 100)}</p>
             </div>
           </div>
           <div className="checkout-od">
@@ -105,7 +111,7 @@ export function Checkout() {
             </p>
           </div>
           <div className="delivery-btn">
-            <button>Place Order</button>
+            <button onClick={() => orderSuccess()}>Place Order</button>
           </div>
         </div>
       </div>

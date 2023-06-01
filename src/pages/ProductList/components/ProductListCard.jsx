@@ -28,7 +28,7 @@ export function ProductListCard({ _id, id, name, image: src, rating, price }) {
   const starContent = [
     ...Array.from({ length: rating }, (_, index) => index + 1),
   ].map((rate) => (
-    <div>
+    <div key={rate}>
       <FontAwesomeIcon icon={faStar} />
       <div style={{ textAlign: "center" }}>{rate}</div>
     </div>
@@ -39,7 +39,7 @@ export function ProductListCard({ _id, id, name, image: src, rating, price }) {
   const unStarContent = unStarLeft
     .map((num) => starContent.length + num)
     .map((rate) => (
-      <div>
+      <div key={rate}>
         <FontAwesomeIcon icon={farStar} />
         <div style={{ textAlign: "center" }}>{rate}</div>
       </div>

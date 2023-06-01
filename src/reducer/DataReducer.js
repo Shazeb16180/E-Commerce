@@ -73,6 +73,13 @@ export function dataReducer(state, action) {
         categories: state.categories,
         products: state.products,
       };
+    case "ORDER_SUCCESS":
+      return {
+        ...initialState,
+        categories: state.categories,
+        products: state.products,
+        address: state.address,
+      };
     default:
       return {
         ...initialState,

@@ -6,18 +6,18 @@ import { AuthContext } from "../../context/AuthContext";
 import { DataContext } from "../../context/DataContext";
 
 export function SignUp() {
-  const { token, signUpUser } = useContext(AuthContext);
-  const { setLoader } = useContext(DataContext);
-  const [type, setType] = useState({ text1: true, text2: true });
-  const [signUpForm, setSignUpForm] = useState(signUpFields);
-  const icon1 = type.text1 ? faEyeSlash : faEye;
-  const icon2 = type.text2 ? faEyeSlash : faEye;
   const signUpFields = {
     email: "",
     password: "",
     firstName: "",
     lastName: "",
   };
+  const { token, signUpUser } = useContext(AuthContext);
+  const { setLoader } = useContext(DataContext);
+  const [type, setType] = useState({ text1: true, text2: true });
+  const [signUpForm, setSignUpForm] = useState(signUpFields);
+  const icon1 = type.text1 ? faEyeSlash : faEye;
+  const icon2 = type.text2 ? faEyeSlash : faEye;
   const navigate = useNavigate();
   const signUpHandler = () => {
     const { email, password, firstName, lastName } = signUpForm;

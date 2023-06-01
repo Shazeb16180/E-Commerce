@@ -31,7 +31,14 @@ export function Home() {
       </section>
       <section className="home-category-menu">
         {state.categories.map(({ id, categoryName, src }) => {
-          return <HomeCategoryCard id={id} name={categoryName} image={src} />;
+          return (
+            <HomeCategoryCard
+              key={id}
+              id={id}
+              name={categoryName}
+              image={src}
+            />
+          );
         })}
       </section>
     </>

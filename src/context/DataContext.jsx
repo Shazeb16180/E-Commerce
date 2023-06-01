@@ -9,6 +9,14 @@ export function DataContextProvider({ children }) {
   const [wishState, wishDispatch] = useReducer(wishReducer, []);
   const [drawer, setDrawer] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [cartState, setCartState] = useState({ couponCard: false, coupon: 0 });
+  const cartData = {
+    price: state.cart.reduce((acc, curr) => {
+      return (acc = acc + Number(curr.price) * curr.qty);
+    }, 0),
+    discount: 200,
+    deliveryCharges: 100,
+  };
   useEffect(() => {
     (async () => {
       try {
@@ -45,6 +53,9 @@ export function DataContextProvider({ children }) {
         setLoader,
         drawer,
         setDrawer,
+        cartState,
+        setCartState,
+        cartData,
       }}
     >
       {children}

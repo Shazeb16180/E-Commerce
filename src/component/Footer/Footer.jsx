@@ -8,9 +8,10 @@ import {
 
 export function Footer() {
   const socialUrls = [
-    { icon: faGithub, url: "https://github.com/Shazeb16180" },
-    { icon: faInstagram, url: "https://www.instagram.com/shazeb1890/" },
+    { id: 1, icon: faGithub, url: "https://github.com/Shazeb16180" },
+    { id: 2, icon: faInstagram, url: "https://www.instagram.com/shazeb1890/" },
     {
+      id: 3,
       icon: faLinkedin,
       url: "https://www.linkedin.com/in/shazeb-khan-28013b218/",
     },
@@ -18,8 +19,8 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-links">
-        {socialUrls.map(({ icon, url }) => (
-          <a href={url} target="_blank">
+        {socialUrls.map(({ id, icon, url }) => (
+          <a key={id} href={url} target="_blank">
             <FontAwesomeIcon
               icon={icon}
               size="2xl"

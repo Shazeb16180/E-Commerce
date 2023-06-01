@@ -83,8 +83,8 @@ input[type="range"] {
   padding: 10px;
   flex-grow: 1;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
 }
@@ -119,8 +119,14 @@ input[type="range"] {
   cursor: pointer;
 }
 .product-list-card-image {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
+}
+@media screen and (min-width: 768px) {
+  .product-list-card-image {
+    width: 200px;
+    height: 200px;
+  }
 }
 .product-list-card-image img {
   width: 100%;

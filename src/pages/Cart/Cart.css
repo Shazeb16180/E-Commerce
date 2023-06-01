@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 .cart-product-card {
   display: flex;
@@ -79,6 +80,78 @@
   display: flex;
   justify-content: flex-end;
 }
+.cart-coupon-display {
+  display: flex;
+  background: rgba(52, 46, 46, 0.7490196078431373);
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  z-index: 8888;
+}
+.cart-coupon-none {
+  display: none;
+}
+.coupon-card {
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: relative;
+}
+.close-symbol {
+  position: absolute;
+  right: 4px;
+  top: 2px;
+}
+.coupon-header {
+  display: flex;
+  padding: 5px;
+}
+.coupon-header svg {
+  margin: auto;
+}
+.coupon-header h1 {
+  margin: auto;
+}
+.coupon-body {
+  padding: 20px;
+}
+.coupon-body-row {
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5rem 4rem 0.5rem 1rem;
+  margin: 5px;
+}
+.coupon-body-row p {
+  margin: auto;
+}
+.cp-button {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.cp-button button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ef233c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.coupon-img {
+  width: 40px;
+  height: 40px;
+}
+
+.cart-price-detail-price svg {
+  margin: auto 0;
+}
+
 .cart-bill h3 {
   border-bottom: 1px solid black;
   border-top: 1px solid black;
