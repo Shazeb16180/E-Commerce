@@ -174,10 +174,11 @@ input[type="range"] {
   border: none;
   cursor: pointer;
 }
-
-.product-list-card-cart button:hover {
-  background-color: #ef233c;
-  color: white;
+@media screen and (min-width: 768px) {
+  .product-list-card-cart button:hover {
+    background-color: #ef233c;
+    color: white;
+  }
 }
 .product-list-card-cart button:active {
   background-color: #333;

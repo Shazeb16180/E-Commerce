@@ -21,7 +21,6 @@ export async function addToWishList(dispatch, product, token, toast) {
 }
 export async function removeFromWishList(id, dispatch, token, toast) {
   try {
-    console.log(id);
     const response = await fetch(`/api/user/wishlist/${id}`, {
       method: "DELETE",
       headers: {

@@ -21,8 +21,8 @@ export function Filters() {
         <h3>Price</h3>
         <div className="range-label">
           <p className="range-min">0</p>
-          <p className="range-mid">50000</p>
-          <p className="range-max">100000</p>
+          <p className="range-mid">2500</p>
+          <p className="range-max">5000</p>
         </div>
         <input
           onChange={(event) => {
@@ -30,7 +30,7 @@ export function Filters() {
           }}
           type="range"
           min={0}
-          max={100000}
+          max={5000}
           value={state.priceRange}
         />
       </div>
