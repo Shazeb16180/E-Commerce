@@ -5,7 +5,7 @@ export const searchProduct = (products, stateSearch) => {
 };
 export const rangeProducts = (products, statePriceRange) => {
   return products.filter(
-    ({ price }) => Number(price) < Number(statePriceRange)
+    ({ price }) => Number(price) <= Number(statePriceRange)
   );
 };
 export const ratingProducts = (products, stateRating) => {

@@ -1,6 +1,6 @@
 export const initialState = {
   sort: "None",
-  priceRange: "50000",
+  priceRange: "2500",
   category: {
     "Tires & Wheels": false,
     "Tools & Garage": false,
@@ -81,6 +81,7 @@ export function dataReducer(state, action) {
         address: state.address,
       };
     default:
+      console.log(state);
       return {
         ...initialState,
         categories: state.categories,

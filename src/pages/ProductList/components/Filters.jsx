@@ -40,7 +40,8 @@ export function Filters() {
           <div key={categoryName} className="filter-product-category">
             <input
               type="checkbox"
-              defaultChecked={state.category[categoryName]}
+              checked={state.category[categoryName]}
+              readOnly
               onClick={(event) => {
                 dispatch({
                   type: "CATEGORY",
@@ -59,7 +60,8 @@ export function Filters() {
             type="radio"
             name="rating"
             value={4}
-            defaultChecked={state.rating === "4" ? "true" : ""}
+            checked={state.rating === "4" ? true : false}
+            readOnly
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -71,7 +73,8 @@ export function Filters() {
             type="radio"
             name="rating"
             value={3}
-            defaultChecked={state.rating === "3" ? "true" : ""}
+            checked={state.rating === "3" ? true : false}
+            readOnly
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -83,7 +86,8 @@ export function Filters() {
             type="radio"
             name="rating"
             value={2}
-            defaultChecked={state.rating === "2" ? "false" : ""}
+            checked={state.rating === "2" ? true : false}
+            readOnly
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -95,9 +99,10 @@ export function Filters() {
             type="radio"
             name="rating"
             value={1}
-            defaultChecked={
-              state.rating === "1" || state.rating === "false" ? "true" : ""
+            checked={
+              state.rating === "1" || state.rating === "false" ? true : false
             }
+            readOnly
             onClick={(event) => {
               dispatch({ type: "RATING", payload: event.target.value });
             }}
@@ -112,9 +117,14 @@ export function Filters() {
             type="radio"
             name="sort"
             value={"L-H"}
-            defaultChecked={
-              state.sort === "None" ? "" : state.sort === "L-H" ? "false" : ""
+            checked={
+              state.sort === "None"
+                ? false
+                : state.sort === "L-H"
+                ? true
+                : false
             }
+            readOnly
             onClick={(event) => {
               dispatch({ type: "SORT", payload: event.target.value });
             }}
@@ -126,9 +136,14 @@ export function Filters() {
             type="radio"
             name="sort"
             value={"H-L"}
-            defaultChecked={
-              state.sort === "None" ? "" : state.sort === "H-L" ? "false" : ""
+            checked={
+              state.sort === "None"
+                ? false
+                : state.sort === "H-L"
+                ? true
+                : false
             }
+            readOnly
             onClick={(event) => {
               dispatch({ type: "SORT", payload: event.target.value });
             }}

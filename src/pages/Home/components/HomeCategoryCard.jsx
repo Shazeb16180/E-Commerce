@@ -10,6 +10,7 @@ export function HomeCategoryCard({ id, name, image }) {
       key={id}
       className="home-category-card"
       onClick={() => {
+        dispatch({ type: "RESET" });
         dispatch({ type: "CATEGORY", payload: { [name]: true } });
         navigate("/store");
         window.scrollTo({ top: 0 });

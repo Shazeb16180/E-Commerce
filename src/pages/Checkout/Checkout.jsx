@@ -91,6 +91,7 @@ export function Checkout() {
                   name="address"
                   type="radio"
                   value={addr.name}
+                  readOnly
                   checked={address.name === addr.name ? true : false}
                   onClick={() => setAddress(addr)}
                 />
