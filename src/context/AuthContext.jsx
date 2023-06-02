@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { DataContext } from "./DataContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export const AuthContext = createContext();
 export function AuthContextProvider({ children }) {
@@ -9,7 +10,8 @@ export function AuthContextProvider({ children }) {
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(localStorageUser?.user);
   const { dispatch } = useContext(DataContext);
-  const loginUser = async (email, password) => {
+  const navigate = useNavigate();
+  const loginUser = async (email, password, location) => {
     if (email && password !== "") {
       try {
         const response = await fetch(`/api/auth/login`, {
@@ -28,19 +30,21 @@ export function AuthContextProvider({ children }) {
           );
           setToken(encodedToken);
           localStorage.setItem("user", JSON.stringify({ user: foundUser }));
-          setUser(user);
+          setUser(foundUser);
+          dispatch({ type: "ADD_CART", payload: foundUser.cart });
+          dispatch({ type: "ADD_WISHLIST", payload: foundUser.wishlist });
+          navigate(location);
+          toast.success("Login Success");
         } else throw error;
       } catch (error) {
         console.log("Error in Login User");
+        toast.error("Invalid Credentials");
       }
     }
   };
   const signUpUser = async (email, password, firstName, lastName) => {
     try {
-      const {
-        data: { createdUser, encodedToken },
-        status,
-      } = await fetch(`/api/auth/signup`, {
+      const response = await fetch(`/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,22 +56,15 @@ export function AuthContextProvider({ children }) {
           lastName: lastName,
         }),
       });
+      const { status } = response;
       if (status === 201) {
-        localStorage.setItem("signup", JSON.stringify({ token: encodedToken }));
-        setToken(encodedToken);
-        localStorage.setItem("user", JSON.stringify({ user: createdUser }));
-        setUser(createdUser);
+        toast.success("User Created Successfully");
+        navigate("/login");
       }
     } catch (error) {
       console.log("Error in SignUp user", error);
     }
   };
-
-  useEffect(() => {
-    if (token) {
-    }
-  }, []);
-
   return (
     <AuthContext.Provider
       value={{ token, setToken, user, setUser, loginUser, signUpUser }}

@@ -87,6 +87,7 @@ input[type="range"] {
   grid-template-rows: 1fr 1fr;
   row-gap: 10px;
   column-gap: 10px;
+  min-height: 100vh;
 }
 .product-list a {
   text-decoration: none;
@@ -97,6 +98,11 @@ input[type="range"] {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
+  .product-list-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
 }
 .product-list-card {
   display: flex;
@@ -106,12 +112,9 @@ input[type="range"] {
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   position: relative;
   border-radius: 5px;
+  justify-content: space-evenly;
 }
-.product-list-card:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+
 .favourite {
   position: absolute;
   top: 5px;
@@ -179,4 +182,11 @@ input[type="range"] {
 .product-list-card-cart button:active {
   background-color: #333;
   color: white;
+}
+.empty-product-list {
+  height: 100vh;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

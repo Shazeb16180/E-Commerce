@@ -17,6 +17,62 @@ export function Checkout() {
   const total = price + deliveryCharges - discount;
   const { coupon } = cartState;
   const [address, setAddress] = useState(state.address[0]);
+  /*********** RAZORPAY *********************/
+
+  const loadScript = async (url) => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = url;
+
+      script.onload = () => {
+        resolve(true);
+      };
+
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const displayRazorpay = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+
+    if (!res) {
+      toast.error("Razorpay SDK failed to load, check you connection");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_M7jr3sNuOwTIPE",
+      amount: total * 100,
+      currency: "INR",
+      name: "Spare Parts",
+      description: "Thank you for shopping with us",
+      handler: function (response) {
+        const orderData = {
+          products: [...state.cart],
+          amount: total,
+          paymentId: response.razorpay_payment_id,
+          delivery: address,
+        };
+      },
+      prefill: {
+        name: `${address.firstName} ${address.lastName}`,
+        email: address.email,
+        contact: "6305286708",
+      },
+      theme: {
+        color: "#333",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+  /*********** RAZORPAY *********************/
+
   useEffect(() => {
     setLoader(true);
     setTimeout(() => {
@@ -35,6 +91,7 @@ export function Checkout() {
                   name="address"
                   type="radio"
                   value={addr.name}
+                  checked={address.name === addr.name ? true : false}
                   onClick={() => setAddress(addr)}
                 />
                 <label>{addr.name}</label>
@@ -47,9 +104,7 @@ export function Checkout() {
                 </p>
                 <p>
                   Phone Number:
-                  {addr.phoneNumber === ""
-                    ? "Not Defined"
-                    : address.phoneNumber}
+                  {addr.phoneNumber === "" ? "Not Defined" : addr.phoneNumber}
                 </p>
               </div>
             ))}
@@ -111,7 +166,7 @@ export function Checkout() {
             </p>
           </div>
           <div className="delivery-btn">
-            <button onClick={() => orderSuccess()}>Place Order</button>
+            <button onClick={() => displayRazorpay()}>Place Order</button>
           </div>
         </div>
       </div>

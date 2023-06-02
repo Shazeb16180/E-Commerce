@@ -12,6 +12,7 @@ export function HomeCategoryCard({ id, name, image }) {
       onClick={() => {
         dispatch({ type: "CATEGORY", payload: { [name]: true } });
         navigate("/store");
+        window.scrollTo({ top: 0 });
       }}
     >
       <div className="home-image-card">

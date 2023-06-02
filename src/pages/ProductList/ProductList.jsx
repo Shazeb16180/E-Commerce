@@ -10,6 +10,8 @@ import {
   searchProduct,
   sortProducts,
 } from "../../utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFaceGrimace } from "@fortawesome/free-solid-svg-icons";
 
 export function ProductList() {
   const { state, setLoader, drawer, setDrawer } = useContext(DataContext);
@@ -31,21 +33,29 @@ export function ProductList() {
   return (
     <div className="products-menu">
       <Filters />
-      <div className="product-list">
-        {temproryProducts.map(({ _id, id, name, src, rating, price }) => {
-          return (
-            <ProductListCard
-              key={_id}
-              _id={_id}
-              id={id}
-              name={name}
-              image={src}
-              rating={rating}
-              price={price}
-            />
-          );
-        })}
-      </div>
+      {temproryProducts.length > 0 ? (
+        <div className="product-list">
+          {temproryProducts.map(({ _id, id, name, src, rating, price }) => {
+            return (
+              <ProductListCard
+                key={_id}
+                _id={_id}
+                id={id}
+                name={name}
+                image={src}
+                rating={rating}
+                price={price}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="empty-product-list">
+          <h1>
+            No Items Found <FontAwesomeIcon icon={faFaceGrimace} />
+          </h1>
+        </div>
+      )}
     </div>
   );
 }

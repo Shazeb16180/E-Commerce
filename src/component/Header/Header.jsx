@@ -43,7 +43,12 @@ export function Header() {
             placeholder="Search For Parts"
           />
         </div>
-        <li className="number-logo">
+        <li
+          className="number-logo"
+          onClick={() => {
+            dispatch({ type: "RESET" });
+          }}
+        >
           <NavLink to={"/store"}>
             <FontAwesomeIcon icon={faShoppingBag} />
           </NavLink>

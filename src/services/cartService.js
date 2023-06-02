@@ -15,7 +15,7 @@ export async function addToCart(dispatch, product, token, toast) {
       throw error;
     }
   } catch (error) {
-    console.error("Error");
+    console.error("Error", error);
   }
 }
 

@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { DataContext } from "../../context/DataContext";
 
 export function Home() {
-  const { state, setLoader } = useContext(DataContext);
+  const { state, dispatch, setLoader } = useContext(DataContext);
   useEffect(() => {
     setLoader(true);
     setTimeout(() => {
@@ -21,7 +21,11 @@ export function Home() {
             Get the Right Part at the Right Price for the Comfort of Your
             Vehicle.
           </h1>
-          <NavLink to={"/store"} className="home-button-shop">
+          <NavLink
+            to={"/store"}
+            onClick={() => dispatch({ type: "RESET" })}
+            className="home-button-shop"
+          >
             Shop
           </NavLink>
         </div>

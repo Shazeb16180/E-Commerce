@@ -1,12 +1,10 @@
 import { createContext, useEffect, useReducer, useState } from "react";
 import { dataReducer, initialState } from "../reducer/DataReducer";
-import { wishReducer } from "../reducer/WishReducer";
 
 export const DataContext = createContext();
 
 export function DataContextProvider({ children }) {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-  const [wishState, wishDispatch] = useReducer(wishReducer, []);
   const [drawer, setDrawer] = useState(false);
   const [loader, setLoader] = useState(false);
   const [cartState, setCartState] = useState({ couponCard: false, coupon: 0 });
@@ -47,8 +45,6 @@ export function DataContextProvider({ children }) {
       value={{
         state,
         dispatch,
-        wishState,
-        wishDispatch,
         loader,
         setLoader,
         drawer,

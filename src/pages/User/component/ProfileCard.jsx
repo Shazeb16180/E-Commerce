@@ -5,7 +5,7 @@ import { DataContext } from "../../../context/DataContext";
 import { toast } from "react-toastify";
 
 export function ProfileCard() {
-  const { setToken, setUser } = useContext(AuthContext);
+  const { setToken, setUser, user } = useContext(AuthContext);
   const { dispatch } = useContext(DataContext);
   const navigate = useNavigate();
   const logOutHandler = () => {
@@ -27,8 +27,8 @@ export function ProfileCard() {
             <p className="variable">Email</p>
           </div>
           <div className="main-value">
-            <p className="value">Email</p>
-            <p className="value">Klaus</p>
+            <p className="value">{`${user?.firstName} ${user?.lastName}`} </p>
+            <p className="value">{user?.email}</p>
           </div>
         </div>
       </div>
