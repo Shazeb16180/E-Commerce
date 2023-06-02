@@ -1,0 +1,123 @@
+.user-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-card-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+  padding: 20px;
+}
+.user-card-flex h1 {
+  text-align: center;
+}
+
+.nav-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 2px solid #333;
+}
+.nav-details button {
+  padding: 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.details,
+.account-setting,
+.btn {
+  padding: 10px;
+}
+.details h3,
+.account-setting h3 {
+  width: fit-content;
+  border-bottom: 1px solid black;
+}
+.name-details {
+  display: flex;
+  gap: 30px;
+}
+.main-details,
+.main-value {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.variable {
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 0;
+}
+.value {
+  font-size: 1rem;
+  margin: 0;
+}
+.btn {
+  text-align: center;
+}
+.btn button {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #ef233c;
+  color: white;
+  cursor: pointer;
+}
+.btn button:active {
+  background-color: #333;
+}
+.address-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.address-details p {
+  margin: 0;
+}
+.addr-btn button {
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.edit-btn {
+  border: 1px solid #333;
+  color: #333;
+  cursor: pointer;
+}
+.remove-btn {
+  border: 1px solid #ef233c;
+  color: #ef233c;
+  cursor: pointer;
+}
+.form-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+.form-buttons button {
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+.save-btn {
+  background-color: lightskyblue;
+  cursor: pointer;
+}
+.cancel-btn {
+  background-color: #ef233c;
+  cursor: pointer;
+}
+.user-card-none {
+  display: none;
+}

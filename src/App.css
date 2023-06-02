@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&display=swap");
+.Toastify__toast--success,
+.Toastify__toast--error,
+.Toastify__toast--info {
+  background-color: black !important;
+}
+
+.Toastify__toast--success .Toastify__toast-body,
+.Toastify__toast--error .Toastify__toast-body,
+.Toastify__toast--info .Toastify__toast-body {
+  color: white !important;
+}
+
+.Toastify__progress-bar--success,
+.Toastify__progress-bar--error,
+.Toastify__progress-bar--info {
+  background-color: white !important;
+}
+.Toastify__close-button {
+  color: white !important;
+}
+
+.App {
+  font-family: "Crete Round", serif;
+}

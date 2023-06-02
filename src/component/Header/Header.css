@@ -4,8 +4,18 @@
   background-color: #333;
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 2;
   border-radius: 15px;
+}
+.nav-button {
+  margin: auto;
+  padding: 5px;
+  display: block;
+}
+@media screen and (min-width: 768px) {
+  .nav-button {
+    display: none;
+  }
 }
 .nav-links {
   list-style-type: none;
@@ -13,11 +23,52 @@
   display: flex;
   flex-grow: 1;
   justify-content: flex-end;
+  align-items: center;
 }
 .nav-links li {
   padding: 2px;
   margin: 5px;
   font-size: larger;
+}
+.search-container {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  margin-left: 10px;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+}
+.search-container svg {
+  margin-left: 5px;
+  margin-right: 0;
+}
+.nav-links input {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  border-radius: 15px;
+}
+.nav-links input:focus {
+  outline: none;
+}
+::placeholder {
+  font-size: larger;
+  color: #333;
+}
+.number-logo {
+  position: relative;
+}
+.number-logo div {
+  position: absolute;
+  right: 1px;
+  top: -6px;
+  font-size: 0.6rem;
+  color: white;
+  background-color: #ef233c;
+  padding: 0.2rem;
+  border-radius: 1000px;
+  border: #333;
 }
 /**********Some mixed css**********/
 .nav-bar a,
@@ -25,6 +76,7 @@
   text-decoration: none;
   color: white;
   margin: auto;
+  padding: 2px;
 }
 .nav-bar a:hover,
 .footer a:hover {

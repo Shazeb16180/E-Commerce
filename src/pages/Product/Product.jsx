@@ -6,23 +6,55 @@ import {
   faStar,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate, useParams } from "react-router";
+import { useContext, useEffect } from "react";
+import { DataContext } from "../../context/DataContext";
+import { AuthContext } from "../../context/AuthContext";
+import { isProductInCart, isProductInWishlist } from "../../utils/utils";
+import { addToWishList } from "../../services/wishListService";
+import { toast } from "react-toastify";
+import { addToCart } from "../../services/cartService";
 export function Product() {
+  const { state, dispatch, setLoader } = useContext(DataContext);
+  const { productId } = useParams();
+  const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const product = state.products.find(({ id }) => id === productId);
+  const { id, name, price, src, rating } = product;
+  const isInWishlist = isProductInWishlist(state.wishlist, productId);
+  const wishListHandler = () => {
+    token
+      ? isInWishlist
+        ? navigate("/favourite")
+        : addToWishList(dispatch, product, token, toast)
+      : navigate("/login");
+  };
+  const isInCart = isProductInCart(state.cart, id);
+  const addToCartHandler = () => {
+    token
+      ? isInCart
+        ? navigate("/cart")
+        : addToCart(dispatch, product, token, toast)
+      : navigate("/login");
+  };
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
     <div className="product-container">
       <div className="product-card">
         <div className="product-item-image">
-          <img
-            src="https://redparts.webps.info/assets/components/phpthumbof/cache/product-4-500x500.8cb26c7720389e626ca4c73f736ce6da43.jpg"
-            alt="Loading...."
-          />
+          <img src={src} alt="Loading...." />
         </div>
         <div className="product-details">
           <div className="product-details-header">
-            <h3>Glossy Gray 19" Aluminium Wheel AR-19</h3>
-            <span>4.5</span>
+            <h3>{name}</h3>
+            <span>{rating}</span>
             <FontAwesomeIcon icon={faStar} />
-            <h3>$800</h3>
+            <h3>${price}</h3>
           </div>
           <div className="product-details-body">
             <div className="product-details-perks">
@@ -55,13 +87,13 @@ export function Product() {
               </div>
             </div>
             <div className="product-buttons">
-              <button>
+              <button onClick={() => addToCartHandler()}>
                 <FontAwesomeIcon icon={faCartShopping} />
-                Add to Cart
+                {isInCart ? "Go To Cart" : "Add To Cart"}
               </button>
-              <button>
+              <button onClick={() => wishListHandler()}>
                 <FontAwesomeIcon icon={faHeart} />
-                Add to Favourite
+                {isInWishlist ? "Go To Favourite" : "Add to Favourite"}
               </button>
             </div>
           </div>
