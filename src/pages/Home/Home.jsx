@@ -10,7 +10,7 @@ export function Home() {
     setLoader(true);
     setTimeout(() => {
       setLoader(false);
-    }, 1000);
+    }, 2000);
   }, []);
   return (
     <>
