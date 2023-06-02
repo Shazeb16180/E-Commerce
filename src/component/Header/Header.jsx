@@ -49,19 +49,19 @@ export function Header() {
             dispatch({ type: "RESET" });
           }}
         >
-          <NavLink to={"/store"}>
+          <NavLink to={"/store"} onClick={() => window.scroll({ top: 0 })}>
             <FontAwesomeIcon icon={faShoppingBag} />
           </NavLink>
         </li>
         <li className="number-logo">
           {state.wishlist.length > 0 && <div>{state.wishlist.length}</div>}
-          <NavLink to={"/favourite"}>
+          <NavLink to={"/favourite"} onClick={window.scroll({ top: 0 })}>
             <FontAwesomeIcon icon={faHeart} />
           </NavLink>
         </li>
         <li className="number-logo">
           {state.cart.length > 0 && <div>{state.cart.length}</div>}
-          <NavLink to={"/cart"}>
+          <NavLink to={"/cart"} onClick={() => window.scroll({ top: 0 })}>
             <FontAwesomeIcon icon={faShoppingCart} />
           </NavLink>
         </li>

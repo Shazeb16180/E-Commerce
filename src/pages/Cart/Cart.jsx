@@ -96,6 +96,7 @@ export function Cart() {
             <button
               onClick={() => {
                 navigate("/checkout");
+                window.scroll({ top: 0 });
               }}
             >
               Checkout
