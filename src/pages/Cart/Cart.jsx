@@ -21,7 +21,7 @@ export function Cart() {
     setLoader(true);
     setTimeout(() => {
       setLoader(false);
-    }, 500);
+    }, 1000);
   }, []);
   return (
     <div className="cart-container">

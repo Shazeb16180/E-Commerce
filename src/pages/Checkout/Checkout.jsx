@@ -86,7 +86,7 @@ export function Checkout() {
     setLoader(true);
     setTimeout(() => {
       setLoader(false);
-    }, 500);
+    }, 1000);
   }, []);
   return orderConfirmed.confirmed ? (
     <OrderConfirmed
