@@ -51,7 +51,7 @@ export async function removeFromCart(id, dispatch, token, toast) {
     if (response.status === 200) {
       const { cart } = await response.json();
       dispatch({ type: "REMOVE_CART", payload: cart });
-      toast.error("Removed From Cart!");
+      toast?.error("Removed From Cart!");
     } else throw error;
   } catch (error) {
     console.error("Error");

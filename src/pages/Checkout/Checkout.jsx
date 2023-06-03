@@ -2,21 +2,34 @@ import "./Checkout.css";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../context/DataContext";
 import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import { removeFromCart } from "../../services/cartService";
+import { OrderConfirmed } from "./component/OrderConfirmed";
 export function Checkout() {
-  const { state, dispatch, setLoader, cartData, cartState } =
+  const { state, dispatch, setLoader, cartData, cartState, setCartState } =
     useContext(DataContext);
-  const navigate = useNavigate();
-  const orderSuccess = () => {
+  const { token } = useContext(AuthContext);
+  const [address, setAddress] = useState(state.address[0]);
+  const [orderConfirmed, setOrderConfirmed] = useState({
+    confirmed: false,
+    id: 0,
+  });
+  const orderSuccess = (razorpay) => {
+    setOrderConfirmed({
+      confirmed: true,
+      id: razorpay,
+      cart: state.cart,
+      total: (total - total * (coupon / 100)) * 83,
+    });
+    setCartState({ couponCard: false, coupon: 0 });
+    state.cart.forEach((cart) => removeFromCart(cart._id, dispatch, token));
     dispatch({ type: "ORDER_SUCCESS" });
-    navigate("/");
-    toast.success("Order Successfully Placed");
+    toast.success("Order Successfully Placed ID:" + razorpay);
   };
   const { price, discount, deliveryCharges } = cartData;
   const total = price + deliveryCharges - discount;
   const { coupon } = cartState;
-  const [address, setAddress] = useState(state.address[0]);
+
   /*********** RAZORPAY *********************/
 
   const loadScript = async (url) => {
@@ -47,17 +60,13 @@ export function Checkout() {
 
     const options = {
       key: "rzp_test_M7jr3sNuOwTIPE",
-      amount: total * 100,
+      amount: (total - total * (coupon / 100)) * 100 * 83,
       currency: "INR",
       name: "Spare Parts",
       description: "Thank you for shopping with us",
       handler: function (response) {
-        const orderData = {
-          products: [...state.cart],
-          amount: total,
-          paymentId: response.razorpay_payment_id,
-          delivery: address,
-        };
+        console.log(response);
+        orderSuccess(response.razorpay_payment_id);
       },
       prefill: {
         name: `${address.firstName} ${address.lastName}`,
@@ -79,7 +88,14 @@ export function Checkout() {
       setLoader(false);
     }, 500);
   }, []);
-  return (
+  return orderConfirmed.confirmed ? (
+    <OrderConfirmed
+      cart={orderConfirmed.cart}
+      razorpay={orderConfirmed.id}
+      address={address}
+      total={orderConfirmed.total}
+    />
+  ) : (
     <div className="checkout-container">
       <h1>Checkout</h1>
       <div className="checkout-content">

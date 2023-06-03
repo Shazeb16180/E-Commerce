@@ -81,7 +81,6 @@ export function dataReducer(state, action) {
         address: state.address,
       };
     default:
-      console.log(state);
       return {
         ...initialState,
         categories: state.categories,

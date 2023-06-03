@@ -107,3 +107,61 @@ h1 {
 .delivery-btn button:active {
   background-color: #333;
 }
+.success-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: scroll;
+}
+.summary-card {
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+@media screen and (min-width: 768px) {
+  .summary-card {
+    flex-direction: row;
+  }
+}
+.summary-details {
+  padding: 10px;
+}
+.success-header {
+  color: green;
+}
+.summary-details p {
+  margin: 0;
+}
+.summary-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .summary-items {
+    display: block;
+  }
+}
+.summary-img {
+  width: 200px;
+  height: 200px;
+}
+.summary-img img {
+  width: 100%;
+  height: 100%;
+}
+.summary-item-card {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 10px;
+}
