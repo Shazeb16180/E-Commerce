@@ -2,7 +2,7 @@ import confetti from "canvas-confetti";
 
 export const searchProduct = (products, stateSearch) => {
   return products.filter(({ name }) =>
-    name.toLowerCase().includes(stateSearch)
+    name.toLowerCase().includes(stateSearch.toLowerCase())
   );
 };
 export const rangeProducts = (products, statePriceRange) => {
