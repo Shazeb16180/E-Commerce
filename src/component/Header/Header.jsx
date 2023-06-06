@@ -32,17 +32,20 @@ export function Header() {
         <h1 className="nav-title">SPARE PARTS</h1>
       </NavLink>
       <ul className="nav-links">
-        <div className="search-container">
-          <FontAwesomeIcon icon={faSearch} color="#333" />
-          <input
-            value={state.search}
-            onChange={(event) => {
-              dispatch({ type: "SEARCH", payload: event.target.value });
-              if (event.target.value.trim().length > 0) navigate("/store");
-            }}
-            placeholder="Search For Parts"
-          />
-        </div>
+        {window.location.href.includes("/store") && (
+          <div className="search-container">
+            <FontAwesomeIcon icon={faSearch} color="#333" />
+            <input
+              value={state.search}
+              onChange={(event) => {
+                dispatch({ type: "SEARCH", payload: event.target.value });
+                if (event.target.value.trim().length > 0) navigate("/store");
+              }}
+              placeholder="Search For Parts"
+            />
+          </div>
+        )}
+
         <li
           className="number-logo"
           onClick={() => {
