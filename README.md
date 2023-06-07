@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Spare Parts</h1>
   
-  An Ecommerce website for Books 
+  An Ecommerce website for AutoParts 
 </div>
 
 ## **How to install and run locally ?**
@@ -38,5 +38,5 @@ $ npm run dev
 - Razorpay payment gateway
 
 ## **Demo -**
-![ezgif com-gif-maker](public/Spare.gif)
+![screen-gif](/public/Spare.gif)
 
